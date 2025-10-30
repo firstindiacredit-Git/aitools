@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:5173",
+        target: "https://semrush-tau.vercel.app/",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/_?api/, ""),
       },

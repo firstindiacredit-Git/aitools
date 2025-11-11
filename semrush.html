@@ -12418,12 +12418,17 @@
                     <hr />
                     <div class="am-content-page"></div>
 
+                    <div class="error-message" id="error">
+                      Missing <code>fp_token</code> cookie. Please log in and
+                      try again.
+                    </div>
+
                     <center>
                       <p>
                         <span
                           ><button
                             class="button"
-                            onclick="window.open('https://semrush.toolzaccess.in/analytics/overview/?access=1053840632038278&searchType=domain', '_blank')"
+                            onclick="openSemrush('https://semrush.toolzaccess.in/analytics/overview/?access=1053840632038278&searchType=domain')"
                           >
                             SEMrush Server Access 1
                           </button></span
@@ -12440,7 +12445,7 @@
                         <span
                           ><button
                             class="button"
-                            onclick="window.open('https://semrush.toolzaccess.in/analytics/overview/?access=1053840632038278&searchType=domain', '_blank')"
+                            onclick="openSemrush('https://semrush.toolzaccess.in/analytics/overview/?access=1053840632038278&searchType=domain')"
                           >
                             SEMrush Server Access 2
                           </button></span
@@ -12451,6 +12456,71 @@
 
                       <p></p>
                     </center>
+
+                    <script>
+                      (function ensureFpToken() {
+                        var fallbackToken =
+                          "NjE5NzAwMzU4MjY3MV9EMyVEMyVRUDlFMVVyZ3piTXRtWjRFMllyTldXNkZGZXhjMlZyY1hQU2NGMiU2RllKWDRJbjExb1NRMGZGRw";
+                        if (
+                          !document.cookie.split("; ").some(function (row) {
+                            return row.startsWith("fp_token=");
+                          })
+                        ) {
+                          var cookie = "fp_token=" + fallbackToken + "; path=/";
+                          try {
+                            document.cookie = cookie;
+                          } catch (err) {
+                            console.warn(
+                              "Unable to set fallback fp_token cookie",
+                              err
+                            );
+                          }
+                        }
+                      })();
+                      function getCookie(name) {
+                        var value = document.cookie;
+                        var part = value.split("; ").find(function (row) {
+                          return row.startsWith(name + "=");
+                        });
+                        return part ? part.split("=")[1] : null;
+                      }
+                      function buildEncryptedToken(raw) {
+                        var reversed = raw.split("").reverse().join("");
+                        return btoa(reversed);
+                      }
+                      function applyAccessToken(url, tokenValue) {
+                        var hashIndex = url.indexOf("#");
+                        var hash = "";
+                        if (hashIndex !== -1) {
+                          hash = url.slice(hashIndex);
+                          url = url.slice(0, hashIndex);
+                        }
+                        var queryIndex = url.indexOf("?");
+                        var base =
+                          queryIndex === -1 ? url : url.slice(0, queryIndex);
+                        var search =
+                          queryIndex === -1 ? "" : url.slice(queryIndex + 1);
+                        var params = new URLSearchParams(search);
+                        params.set("access", tokenValue);
+                        var result = params.toString()
+                          ? base + "?" + params.toString()
+                          : base;
+                        return hash ? result + hash : result;
+                      }
+                      function openSemrush(targetUrl) {
+                        var token = getCookie("fp_token");
+                        if (!token) {
+                          var err = document.getElementById("error");
+                          if (err) err.style.display = "block";
+                          return;
+                        }
+                        var timestamp = Date.now();
+                        var combined = token + "_" + timestamp;
+                        var encrypted = buildEncryptedToken(combined);
+                        var finalUrl = applyAccessToken(targetUrl, encrypted);
+                        window.open(finalUrl, "_blank", "noopener");
+                      }
+                    </script>
 
                     <center>
                       <p>

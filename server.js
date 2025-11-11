@@ -519,6 +519,10 @@ app.get("/envato", (req, res) => {
   res.sendFile(path.join(__dirname, "envato.html"));
 });
 
+app.get("/envato2", (req, res) => {
+  res.sendFile(path.join(__dirname, "envato2.html"));
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
   console.log(

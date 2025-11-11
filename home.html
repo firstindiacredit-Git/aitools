@@ -678,6 +678,13 @@ $(function(){
                      <span style="font-size: 18px; font-weight: 600; ">Semrush</span>
               </button>
               </div>
+              <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <img src="https://www.envato.com/favicon.ico" alt="Envato" style="width: 190px; height: 100px;">
+                <button onclick="if(window.parent && window.parent !== window){window.parent.postMessage({action: 'navigate', route: 'envato'}, '*');}else{window.location.href='envato.html';}" 
+                        style="padding: 6px; font-size: 20px; font-weight: 600; color: white; background: #000000; border: none;  cursor: pointer; box-shadow: 0 8px 24px rgba(245, 158, 11, 0.4); transition: all 0.3s ease; min-width: 190px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;">
+                        <span style="font-size: 18px; font-weight: 600; ">Envato</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -725,7 +732,10 @@ $(function(){
     } else if (route === 'aiconvert') {
       frame.src = 'aiconvert.html?embed=1';
       setActive('aiconvert.html');
-    }
+    } else if (route === 'envato') {
+      frame.src = 'envato.html?embed=1';
+      setActive('envato.html');
+        }
     try { history.replaceState(null, '', 'home.html#' + route); } catch(e){}
   }
   // Listen for messages from embed iframe
@@ -744,6 +754,7 @@ $(function(){
     else if (href.indexOf('aiconvert.html')>-1) { navigate('aiconvert'); }
     else if (href.indexOf('aidetection.html')>-1) { navigate('aidetection'); }
     else if (href.indexOf('semrush.html')>-1) { navigate('semrush'); }
+    else if (href.indexOf('envato.html')>-1) { navigate('envato'); }
     else if (href.indexOf('home.html')>-1) { navigate('home'); }
   });
   // initial route - only navigate if iframe is empty or hash exists
@@ -758,7 +769,10 @@ $(function(){
     navigate('aidetection');
   } else if (hash === 'aiconvert') {
     navigate('aiconvert');
+  } else if (hash === 'envato') {
+    navigate('envato');
   } else {
+
     // Only navigate to home if iframe is empty or not already showing home
     if (!currentSrc || currentSrc.indexOf('home.html?embed=1') === -1) {
       navigate('home');

@@ -1,7 +1,7 @@
 {
-  "name": "ai-detection",
+  "name": "seotool",
   "version": "1.0.0",
-  "description": "AI Content Detection Tool",
+  "description": "seotool",
   "main": "server.js",
   "type": "module",
   "scripts": {

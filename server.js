@@ -515,6 +515,9 @@ app.get("/canva", (req, res) => {
 app.get("/semrush", (req, res) => {
   res.sendFile(path.join(__dirname, "semrush.html"));
 });
+app.get("/envato", (req, res) => {
+  res.sendFile(path.join(__dirname, "envato.html"));
+});
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);

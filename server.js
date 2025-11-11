@@ -503,6 +503,19 @@ app.get("/ai-detection", (req, res) => {
   res.sendFile(path.join(__dirname, "aidetection.html"));
 });
 
+app.get("/ai-humanizer", (req, res) => {
+  res.sendFile(path.join(__dirname, "aiconvert.html"));
+});
+
+
+app.get("/canva", (req, res) => {
+  res.sendFile(path.join(__dirname, "canva.html"));
+});
+
+app.get("/semrush", (req, res) => {
+  res.sendFile(path.join(__dirname, "semrush.html"));
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
   console.log(

@@ -494,8 +494,12 @@ app.use((req, res, next) => {
   next();
 });
 
-// Serve HTML file
+// Serve landing pages
 app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "home.html"));
+});
+
+app.get("/ai-detection", (req, res) => {
   res.sendFile(path.join(__dirname, "aidetection.html"));
 });
 

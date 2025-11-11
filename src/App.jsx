@@ -1,11 +1,12 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
-</head>
-<body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-</body>
-</html>
+import './App.css'
+
+function App() {
+  return (
+    <main className="main-content fade-in">
+      <h1>Toolz Access</h1>
+      <p>Welcome! Customize `src/App.jsx` to build your experience.</p>
+    </main>
+  )
+}
+
+export default App

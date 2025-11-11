@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Text Converter - Humanize AI Content</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            padding-left: 34px;
+            min-height: 100vh;
+            padding: 10px;
+            padding-left: 100px;
+          
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+           
+            overflow: hidden;
+           
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 { font-size: 2.5em; margin-bottom: 1px; }
+        .header p { opacity: 0.9; font-size: 1.1em; }
+        .content { padding: 10px; }
+        .input-section { margin-bottom: 30px; }
+        .input-section label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #333;
+            font-size: 1.1em;
+        }
+        .input-section textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: inherit;
+            resize: vertical;
+        }
+        .input-section textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1;
+            min-width: 200px;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102,126,234,0.4);
+        }
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #333;
+            border: 2px solid #e0e0e0;
+        }
+        .btn-secondary:hover { background: #e9ecef; }
+        .btn-success {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+        }
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(16,185,129,0.4);
+        }
+        .btn-success:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        .results { margin-top: 30px; display: none; }
+        .results.show { display: block; }
+        .comparison-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        @media (max-width: 768px) {
+            .comparison-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        .text-panel {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+        }
+        .text-panel h3 {
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .text-panel.original h3 {
+            color: #667eea;
+        }
+        .text-panel.converted h3 {
+            color: #10b981;
+        }
+        .text-content {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            min-height: 200px;
+            max-height: 500px;
+            overflow-y: auto;
+            font-size: 15px;
+            line-height: 1.8;
+            color: #1f2937;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .detection-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        .badge-ai {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+        .badge-human {
+            background: #d1fae5;
+            color: #059669;
+        }
+        .badge-unknown {
+            background: #f3f4f6;
+            color: #6b7280;
+        }
+        .stats-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 2px solid #e0e0e0;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            color: #6b7280;
+            margin-bottom: 5px;
+        }
+        .stat-value {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #333;
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+        .loading.show { display: block; }
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .error {
+            background: #fee;
+            color: #c33;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #c33;
+        }
+        .copy-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-top: 10px;
+            transition: all 0.3s;
+        }
+        .copy-btn:hover {
+            background: #5568d3;
+        }
+        .copy-btn.copied {
+            background: #10b981;
+        }
+        /* Diff highlighting */
+        .diff-removed { background: #fee2e2; color: #991b1b; border-radius: 4px; padding: 0 2px; }
+        .diff-added { background: #d1fae5; color: #065f46; border-radius: 4px; padding: 0 2px; }
+        .diff-changed { background: #fef3c7; color: #92400e; border-radius: 4px; padding: 0 2px; }
+        .controls-row { display: flex; align-items: center; gap: 12px; margin: 10px 0 0 0; }
+        select {
+            transition: all 0.3s;
+        }
+        select:hover {
+            border-color: #667eea;
+        }
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔄 AI Text Converter</h1>
+            <p>Convert AI-generated text to human-like content with minimal changes</p>
+        </div>
+        <div class="content">
+            <div class="input-section">
+                <label for="text-input">Enter text to convert:</label>
+                <textarea id="text-input" placeholder="Paste or type the text you want to humanize..."></textarea>
+            </div>
+            <div class="button-group">
+                <button class="btn-success" id="convert-btn" onclick="convertText()">✨ Humanize Text</button>
+                <button class="btn-secondary" onclick="clearAll()">Clear</button>
+            </div>
+            <div class="controls-row" style="margin-bottom: 20px;display:flex;gap:15px;flex-wrap:wrap;align-items:center;">
+                <div style="display:flex;align-items:center;gap:8px;flex:1;min-width:200px;">
+                    <label style="font-weight:600;color:#333;white-space:nowrap;">Style:</label>
+                    <select id="style-mode" style="padding:8px 12px;border:2px solid #e0e0e0;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;flex:1;min-width:180px;">
+                        <option value="informal">Informal (Word Mapping)</option>
+                        <option value="formal">Formal (Gemini AI)</option>
+                    </select>
+                </div>
+                <div id="method-info" style="padding:10px 14px;background:#f0f9ff;border:1px solid #bae6fd;border-radius:8px;font-size:13px;color:#0369a1;flex:1;min-width:300px;text-align:center;">
+                    <strong>Method:</strong> <span id="method-display">Word Mapping</span> | <strong>Style:</strong> <span id="style-display">Informal</span>
+                </div>
+            </div>
+            <div class="controls-row" style="display:none" id="diff-controls">
+                <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
+                    <input type="checkbox" id="toggle-highlight" checked onchange="applyHighlightToggle()" />
+                    Highlight changes
+                </label>
+            </div>
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p id="loading-text">Processing...</p>
+            </div>
+            <div id="error-container"></div>
+            <div class="results" id="results">
+                <div class="comparison-container">
+                    <div class="text-panel original">
+                        <h3>Original Text</h3>
+                        <div class="text-content" id="original-text">-</div>
+                        <button class="copy-btn" onclick="copyText('original')">Copy Original</button>
+                    </div>
+                    <div class="text-panel converted">
+                        <h3>Humanized Text</h3>
+                        <div class="text-content" id="converted-text">-</div>
+                        <button class="copy-btn" onclick="copyText('converted')">Copy Converted</button>
+                    </div>
+                </div>
+                <div class="stats-card" id="changes-card" style="display:none">
+                    <div style="display:flex;justify-content:space-between;align-items:center">
+                        <h3 style="margin:0;color:#333;font-size:1.1em">Word changes</h3>
+                        <small style="color:#6b7280" id="changes-summary"></small>
+                    </div>
+                    <div id="changes-list" style="margin-top:10px;line-height:1.9"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let originalText = '';
+        let convertedText = '';
+        let wordMappings = null;
+        
+        // Load word mappings from JSON file
+        async function loadWordMappings() {
+            if (wordMappings) return wordMappings;
+            try {
+                const response = await fetch('/word-mapping.json');
+                wordMappings = await response.json();
+                return wordMappings;
+            } catch (error) {
+                console.error('Error loading word mappings:', error);
+                return { formal: {}, informal: {} };
+            }
+        }
+        
+        function updateMethodDisplay() {
+            const styleSelect = document.getElementById('style-mode');
+            const methodDisplay = document.getElementById('method-display');
+            const styleDisplay = document.getElementById('style-display');
+            
+            if (!styleSelect || !methodDisplay || !styleDisplay) return;
+            
+            const isFormal = styleSelect.value === 'formal';
+            const method = isFormal ? 'Gemini AI' : 'Word Mapping';
+            const style = isFormal ? 'Formal' : 'Informal';
+            
+            methodDisplay.textContent = method;
+            styleDisplay.textContent = style;
+        }
+        
+        // Update display when selections change
+        function initializeControls() {
+            const styleSelect = document.getElementById('style-mode');
+            
+            if (styleSelect) {
+                styleSelect.addEventListener('change', updateMethodDisplay);
+                updateMethodDisplay();
+            }
+        }
+        
+        // Initialize when page loads
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeControls);
+        } else {
+            initializeControls();
+        }
+
+        async function convertText() {
+            const text = document.getElementById('text-input').value.trim();
+            if (!text) {
+                showError("Please enter some text to convert.");
+                return;
+            }
+
+            originalText = text;
+            document.getElementById('loading').classList.add('show');
+            document.getElementById('loading-text').textContent = 'Humanizing text with minimal changes...';
+            document.getElementById('error-container').innerHTML = '';
+            document.getElementById('convert-btn').disabled = true;
+
+            try {
+                // Get style selection - Formal uses Gemini AI, Informal uses Word Mapping
+                const styleSelect = document.getElementById('style-mode');
+                const isFormal = styleSelect.value === 'formal';
+                
+                if (isFormal) {
+                    // Formal = Gemini AI
+                    document.getElementById('loading-text').textContent = 'Humanizing text with Gemini AI...';
+                    const converted = await convertWithGemini(originalText, isFormal);
+                    
+                    if (converted.success) {
+                        convertedText = converted.text;
+                        renderResultsWithDiff();
+                    } else {
+                        // Fallback to word mapping if Gemini fails
+                        document.getElementById('loading-text').textContent = 'Gemini unavailable, using word mapping...';
+                        const fallback = await humanizeLocally(originalText, isFormal);
+                        convertedText = fallback;
+                        renderResultsWithDiff();
+                        showError(converted.error || 'Gemini API unavailable. Using word mapping instead.');
+                    }
+                } else {
+                    // Informal = Word Mapping
+                    document.getElementById('loading-text').textContent = 'Converting text using word mapping...';
+                    const converted = await humanizeLocally(originalText, isFormal);
+                    convertedText = converted;
+                    renderResultsWithDiff();
+                }
+            } catch (error) {
+                // On exception, try word mapping as fallback
+                const styleSelect = document.getElementById('style-mode');
+                const isFormal = styleSelect.value === 'formal';
+                const fallback = await humanizeLocally(originalText, isFormal);
+                convertedText = fallback;
+                renderResultsWithDiff();
+                showError(`Error occurred. Using word mapping: ${error.message}`);
+            } finally {
+                document.getElementById('loading').classList.remove('show');
+                document.getElementById('convert-btn').disabled = false;
+            }
+        }
+
+        async function convertWithGemini(text, isFormal = false) {
+            try {
+                const response = await fetch("/api/convert/gemini", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ text: text, formal: isFormal }),
+                });
+
+                // Check if response is JSON
+                const contentType = response.headers.get("content-type");
+                if (!contentType || !contentType.includes("application/json")) {
+                    const textResponse = await response.text();
+                    return {
+                        success: false,
+                        error: `Server returned non-JSON response. Status: ${response.status}. Make sure the server is running and the endpoint exists.`,
+                    };
+                }
+
+                const result = await response.json();
+                
+                if (response.ok && result.success) {
+                    return {
+                        success: true,
+                        text: result.text,
+                    };
+                }
+
+                return {
+                    success: false,
+                    error: result.error || `API error: ${response.status}`,
+                };
+            } catch (error) {
+                // Check if it's a JSON parse error
+                if (error.message.includes("Unexpected token") || error.message.includes("JSON")) {
+                    return {
+                        success: false,
+                        error: "Server returned invalid response. Make sure the server is running and the /api/convert/gemini endpoint is configured correctly.",
+                    };
+                }
+                return {
+                    success: false,
+                    error: error.message || "Network error. Please check your connection and server status.",
+                };
+            }
+        }
+
+        async function humanizeLocally(text, isFormal = false) {
+            // Load word mappings
+            const mappings = await loadWordMappings();
+            const mode = isFormal ? 'formal' : 'informal';
+            const wordMap = mappings[mode] || {};
+            
+            // Preserve paragraphs
+            const paragraphs = text.split(/\n{2,}/);
+            const processSentenceLevel = (t) => {
+                let s = t;
+                
+                // Remove parentheses around acronyms like (SEO) -> SEO
+                s = s.replace(/\(([A-Z]{2,})\)/g, '$1');
+                
+                // Apply word mappings from JSON
+                Object.entries(wordMap).forEach(([original, replacement]) => {
+                    // Use word boundaries to match whole words only
+                    const regex = new RegExp(`\\b${original}\\b`, 'gi');
+                    s = s.replace(regex, replacement);
+                });
+                
+                // Common formal -> casual swaps (fallback if not in JSON)
+                s = s.replace(/\bsuch as\b/gi, 'like');
+                s = s.replace(/\binvolves\b/gi, 'includes');
+                // Replace "allows X to" with "helps X to"
+                s = s.replace(/\ballows\s+([^to]+?)\s+to\b/gi, (match, p1) => {
+                    return 'helps ' + p1.trim() + ' to';
+                });
+                s = s.replace(/\ballows\b/gi, 'lets');
+                s = s.replace(/\breach\b/gi, 'connect with');
+                s = s.replace(/\btrack\b/gi, 'monitor');
+                s = s.replace(/\btailor\b/gi, 'adjust');
+                s = s.replace(/\bpersonalize\b/gi, 'personalize');
+                s = s.replace(/\bunderstand\b/gi, 'know');
+                s = s.replace(/\bimprove\b/gi, 'boost');
+                s = s.replace(/\bdrive\b/gi, 'get');
+                s = s.replace(/\bcrucial\b/gi, 'important');
+                s = s.replace(/\beffectively\b/gi, 'well');
+                s = s.replace(/\bencompasses\b/gi, 'This encompasses');
+                s = s.replace(/\bthe practice of\b/gi, 'the practice of');
+                s = s.replace(/\bwith\s+online\s+platforms\b/gi, 'with online platforms');
+                
+                // Add -- before specific words (performance, behavior, etc.) - only left side, not both sides
+                const wordsToWrap = ['performance', 'behavior', 'engagement', 'analytics', 'automation'];
+                wordsToWrap.forEach(word => {
+                    const regex = new RegExp(`\\b${word}\\b`, 'gi');
+                    s = s.replace(regex, `--${word}`);
+                });
+                
+                // Light contractions
+                s = s.replace(/\bdo not\b/gi, "don't");
+                s = s.replace(/\bdoes not\b/gi, "doesn't");
+                s = s.replace(/\bcan not\b/gi, "can't");
+                s = s.replace(/\bit is\b/gi, "it's");
+                s = s.replace(/\bthat is\b/gi, "that's");
+                s = s.replace(/\bwe are\b/gi, "we're");
+                s = s.replace(/\bthey are\b/gi, "they're");
+
+                // Reduce overuse of transition words
+                s = s.replace(/\bmoreover,?\s*/gi, '');
+                s = s.replace(/\bfurthermore,?\s*/gi, '');
+                s = s.replace(/\bin addition,?\s*/gi, '');
+
+                return s;
+            };
+
+            let processed = paragraphs
+                .map(p => p
+                    .split(/\n/)
+                    .map(line => {
+                        let out = processSentenceLevel(line);
+                        // Remove spaces before punctuation like "word ," -> "word,"
+                        out = out.replace(/\s+([.,!?;:])/g, '$1');
+                        // Ensure space after commas - "word,word" -> "word, word"
+                        out = out.replace(/,\s*/g, ', ');
+                        
+                        // Only in formal mode: Remove spaces after full stops/periods - "word. word" -> "word.word"
+                        if (isFormal) {
+                            out = out.replace(/\.\s+/g, '.');
+                        }
+                        // Collapse 2+ spaces after punctuation to a single space
+                        out = out.replace(/([.,!?;:])\s{2,}/g, '$1 ');
+                        // Collapse 2+ spaces anywhere to single space
+                        out = out.replace(/\s{2,}/g, ' ');
+                        return out;
+                    })
+                    .join('\n'))
+                .join('\n\n');
+            // Reduce multiple blank lines (2 or 3+) to a single blank line
+            processed = processed.replace(/\n{3,}/g, '\n\n');
+            return processed.trim();
+        }
+
+        // ===== Diff & Visualization =====
+        function tokenizeWords(str) {
+            return (str.match(/[A-Za-z0-9']+|[^A-Za-z0-9\s]+/g) || []);
+        }
+
+        function lcsMatrix(a, b) {
+            const n = a.length, m = b.length;
+            const dp = Array.from({ length: n + 1 }, () => new Array(m + 1).fill(0));
+            for (let i = 1; i <= n; i++) {
+                for (let j = 1; j <= m; j++) {
+                    if (a[i - 1].toLowerCase() === b[j - 1].toLowerCase()) dp[i][j] = dp[i - 1][j - 1] + 1;
+                    else dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+                }
+            }
+            return dp;
+        }
+
+        function backtrackDiff(a, b, dp) {
+            const ops = [];
+            let i = a.length, j = b.length;
+            while (i > 0 && j > 0) {
+                if (a[i - 1].toLowerCase() === b[j - 1].toLowerCase()) {
+                    ops.push({ type: 'equal', a: a[i - 1], b: b[j - 1] });
+                    i--; j--;
+                } else if (dp[i - 1][j] >= dp[i][j - 1]) {
+                    ops.push({ type: 'remove', a: a[i - 1] });
+                    i--;
+                } else {
+                    ops.push({ type: 'add', b: b[j - 1] });
+                    j--;
+                }
+            }
+            while (i > 0) { ops.push({ type: 'remove', a: a[i - 1] }); i--; }
+            while (j > 0) { ops.push({ type: 'add', b: b[j - 1] }); j--; }
+            ops.reverse();
+            return ops;
+        }
+
+        function buildChangeSummary(ops) {
+            const pairs = {};
+            let removedBuffer = [];
+            let addedBuffer = [];
+
+            const flush = () => {
+                if (removedBuffer.length && addedBuffer.length) {
+                    const from = removedBuffer.join(' ');
+                    const to = addedBuffer.join(' ');
+                    const key = from + '→' + to;
+                    pairs[key] = (pairs[key] || 0) + 1;
+                }
+                removedBuffer = [];
+                addedBuffer = [];
+            };
+
+            ops.forEach(op => {
+                if (op.type === 'remove') { removedBuffer.push(op.a); }
+                else if (op.type === 'add') { addedBuffer.push(op.b); }
+                else { flush(); }
+            });
+            flush();
+
+            const entries = Object.entries(pairs)
+                .map(([k, count]) => {
+                    const [from, to] = k.split('→');
+                    return { from, to, count };
+                })
+                .sort((x, y) => y.count - x.count);
+            return entries;
+        }
+
+        function highlightFromOps(text, ops, isOriginal) {
+            // Rebuild using tokens and mark adds/removes
+            const parts = [];
+            ops.forEach(op => {
+                if (op.type === 'equal') {
+                    parts.push(escapeHtml(isOriginal ? op.a : op.b));
+                } else if (op.type === 'remove' && isOriginal) {
+                    parts.push(`<span class="diff-removed">${escapeHtml(op.a)}</span>`);
+                } else if (op.type === 'add' && !isOriginal) {
+                    parts.push(`<span class="diff-added">${escapeHtml(op.b)}</span>`);
+                }
+                // For opposite side of add/remove, we skip tokens so lengths align visually
+            });
+            return parts.join('');
+        }
+
+        function escapeHtml(s) {
+            return String(s)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+        }
+
+        function renderResultsWithDiff() {
+            document.getElementById('results').classList.add('show');
+            document.getElementById('diff-controls').style.display = 'flex';
+
+            const a = tokenizeWords(originalText);
+            const b = tokenizeWords(convertedText);
+            const dp = lcsMatrix(a, b);
+            const ops = backtrackDiff(a, b, dp);
+
+            // Summary list
+            const changes = buildChangeSummary(ops).filter(x => x.from.match(/[A-Za-z0-9]/) && x.to.match(/[A-Za-z0-9]/));
+            const list = document.getElementById('changes-list');
+            if (changes.length) {
+                document.getElementById('changes-card').style.display = 'block';
+                document.getElementById('changes-summary').textContent = `${changes.length} unique change(s)`;
+                list.innerHTML = changes
+                    .slice(0, 100)
+                    .map(c => `<div><span class="diff-removed">${escapeHtml(c.from)}</span> → <span class="diff-added">${escapeHtml(c.to)}</span> <small style="color:#6b7280">(${c.count})</small></div>`)
+                    .join('');
+            } else {
+                document.getElementById('changes-card').style.display = 'none';
+                list.innerHTML = '';
+            }
+
+            // Highlight toggle
+            applyHighlightToggle(ops);
+        }
+
+        function applyHighlightToggle(opsCached) {
+            const highlight = document.getElementById('toggle-highlight');
+            const a = tokenizeWords(originalText);
+            const b = tokenizeWords(convertedText);
+            const ops = opsCached || backtrackDiff(a, b, lcsMatrix(a, b));
+            if (highlight && highlight.checked) {
+                document.getElementById('original-text').innerHTML = highlightFromOps(originalText, ops, true);
+                document.getElementById('converted-text').innerHTML = highlightFromOps(convertedText, ops, false);
+            } else {
+                document.getElementById('original-text').textContent = originalText;
+                document.getElementById('converted-text').textContent = convertedText;
+            }
+        }
+
+
+        function copyText(type) {
+            const text = type === 'original' ? originalText : convertedText;
+            
+            if (!text || text === '-') {
+                showError("No text to copy.");
+                return;
+            }
+
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = event.target;
+                const originalText = btn.textContent;
+                btn.textContent = '✓ Copied!';
+                btn.classList.add('copied');
+                
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.classList.remove('copied');
+                }, 2000);
+            }).catch(() => {
+                // Silently fail - no error message shown
+            });
+        }
+
+        function showError(message) {
+            const errorContainer = document.getElementById('error-container');
+            errorContainer.innerHTML = `<div class="error">${message}</div>`;
+        }
+
+        function clearAll() {
+            document.getElementById('text-input').value = '';
+            document.getElementById('results').classList.remove('show');
+            document.getElementById('error-container').innerHTML = '';
+            document.getElementById('loading').classList.remove('show');
+            document.getElementById('original-text').textContent = '-';
+            document.getElementById('converted-text').textContent = '-';
+            originalText = '';
+            convertedText = '';
+        }
+    </script>
+</body>
+</html>
+

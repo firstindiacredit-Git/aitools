@@ -5,11 +5,12 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   server: {
+    port: 5173,
     proxy: {
       "/api": {
-        target: "https://semrush-tau.vercel.app/",
+        target: "http://localhost:3000",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/_?api/, ""),
+        secure: false,
       },
     },
   },

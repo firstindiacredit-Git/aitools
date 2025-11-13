@@ -16,9 +16,6 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script>
-      window.__sm2mfp = 'https://semrush.toolzaccess.in/static-redirect/remote-integrations';
-    </script>
     <script
       type="text/javascript"
       integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
@@ -1080,12 +1077,11 @@
                     <div class="am-content-page"></div>
 
                     <center>
-                      
                       <p>
                         <span
                           ><button
                             class="button"
-                            onclick="window.open('https://semrush.pizeonfly.com/analytics/overview/?searchType=domain', '_blank')"
+                            onclick="window.open('https://semrush.toolzaccess.in/analytics/overview/?searchType=domain', '_blank')"
                           >
                             SEMrush Server Access 1
                           </button></span
@@ -1102,7 +1098,7 @@
                         <span
                           ><button
                             class="button"
-                            onclick="window.open('https://semrush.toolzaccess.in/analytics/overview/?searchType=domain', '_blank')"
+                            onclick="window.open('https://lock.toolzbuy.com/semrush1', '_blank')"
                           >
                             SEMrush Server Access 2
                           </button></span
@@ -1208,65 +1204,25 @@
                       </p>
 
                       <p></p>
+                    </center><center>
+                      <p>
+                        <span
+                          ><button
+                            class="button"
+                            onclick="window.open('https://semrush.toolzaccess.in/analytics/keywordmagic')"    
+                            navigateTo=""                      >
+                            SEMrush Server Access 7
+                          </button></span
+                        >
+                      </p>
+
+                      <p></p>
                     </center>
-
-                    <script>
-                      function openSemrushAccessLink() {
-                        var input = document.getElementById('semrush-access-id');
-                        var error = document.getElementById('semrush-access-error');
-
-                        if (!input) {
-                          return;
-                        }
-
-                        var accessId = (input.value || '').trim();
-
-                        if (!accessId) {
-                          if (error) {
-                            error.style.display = 'block';
-                          }
-                          input.focus();
-                          return;
-                        }
-
-                        if (error) {
-                          error.style.display = 'none';
-                        }
-
-                        var baseUrl = 'https://semrush.pizeonfly.com/analytics/overview/';
-                        var url;
-
-                        try {
-                          url = new URL(baseUrl);
-                        } catch (e) {
-                          // Fallback for environments without URL constructor support
-                          url = {
-                            toString: function () {
-                              return (
-                                baseUrl +
-                                '?access=' +
-                                encodeURIComponent(accessId) +
-                                '&searchType=domain'
-                              );
-                            },
-                          };
-                        }
-
-                        if (url instanceof URL) {
-                          url.searchParams.set('access', accessId);
-                          url.searchParams.set('searchType', 'domain');
-                        }
-
-                        window.open(url.toString(), '_self');
-                      }
-                    </script>
 
                     <div class="am-content-page"></div>
 
                     <center>
-                      <p>
-                        <button class="button" onclick="window.open('/analytics/keywordmagic.html', '_blank')">
-                      </p>
+                      <p></p>
                     </center>
 
                     <center>
@@ -1774,21 +1730,6 @@ window.addEventListener('turnstile:token', function(e) {
 document.getElementById('cf-turnstile-response').value = e.detail;
 document.getElementById('login').style.display = 'red';
 });
-
-// Ensure PHP session cookie is scoped to the Toolzbuy domain
-document.addEventListener('DOMContentLoaded', function() {
-  var cookieParts = [
-    'path=/',
-    'domain=.toolzbuy.com',
-    'SameSite=Lax'
-  ];
-
-  if (window.location.protocol === 'https:') {
-    cookieParts.push('Secure');
-  }
-
-
-});
 });
 </script>    >
 <script type="text/am-vars">{"script-replaced-_login":" ","showRecaptcha":true,"recaptchaPublicKey":"6LdIHhQgAAAAAJT4U6RwlEUCCg7peSErqleqz82q"}</script>
@@ -1850,11 +1791,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <script src="/application/default/themes/toolzbuy/public/js/jquery-jvectormap-2.0.2.min.js"></script>
     <script src="/application/default/themes/toolzbuy/public/js/jquery-jvectormap-world-mill-en.js"></script>
     <script src="/application/default/themes/toolzbuy/public/js/dashboard1.min.js"></script>
-    <script>
-        window.__sm2mfp = 'https://semrush.pizeonfly.com/static-redirect/domain-overview/overview.2f2c8ba5ed8d0f3baf38.js';
-      </script>
-      <script defer src="https://semrush.pizeonfly.com/static-redirect/ajst/ajst.js"></script>
-    <script src="https://lock.toolzbuy.com/semrush1/"></script>
+
     <script>
       !(function (t, e, c, n) {
         var s = e.createElement(c);

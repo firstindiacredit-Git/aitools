@@ -17,37 +17,47 @@
 
   
 
-
+  <script>
+    window.__sm2init_toolkit__ = window.__sm2init_toolkit__ || function () {};
+    window.sm2 = window.sm2 || {};
+    window.sm2.renderReactModuleFederationWidget = window.sm2.renderReactModuleFederationWidget || function () {};
+  </script>
 
 
   
 <script>
+    
+  window.ANALYTICS_GTM_ID = "GTM-5K82J2";
+  
 
-window.ANALYTICS_GTM_ID = "GTM-5K82J2";
+  window.pendingAnalytics = window.pendingAnalytics || [];
+  window.analytics = {};
 
+  ["track", "setDefaults", "deleteDefaults"].forEach((name) => {
+      window.analytics[name] = function () {
+          pendingAnalytics.push([name, arguments]);
+      };
+  });
 
-window.pendingAnalytics = window.pendingAnalytics || [];
-window.analytics = {};
-
-["track", "setDefaults", "deleteDefaults"].forEach((name) => {
-window.analytics[name] = function () {
-  pendingAnalytics.push([name, arguments]);
-};
-});
-
-
-window.analytics.setDefaults("user_type", "unlogged");
-
-</script>
+  
+      window.analytics.setDefaults("user_id", "27647319");
+      window.analytics.setDefaults("traffic_source", "external");
+      window.analytics.setDefaults("subscription_type", "guru");
+      window.analytics.setDefaults("corporate_type", "user");
+      window.analytics.setDefaults("user_type", "trial");
+  
+  </script>
 <script async="" src="https://static.semrush.com/ajst/ajst.js"></script>
 
 
 
-  <script>
-      window.sm2 = {"GAexperiments": [], "language": "en", "isSessionCreatedByAdmin": false, "abTestsLabels": [], "ipCountryCode": "IN"};
+<script>
+  window.sm2 = {"GAexperiments": [], "language": "en", "isSessionCreatedByAdmin": false, "abTestsLabels": ["ai-assistant-access"], "ipCountryCode": "MY"};
 
-      
-  </script>
+  
+      window.sm2.user = {"id": 27647319, "email": "sriharshaysr+pc1i23lj@gmail.com", "registration_date": "2025-11-12T04:55:12-05:00", "short_name": "", "api_key": "150f67587d81a198a3044152408b8a50", "phone": null, "language": "en", "preferred_db": null, "is_admin": false, "is_beta": false, "timezone": null, "survey_segment": null};   
+  
+</script>
 
   
 

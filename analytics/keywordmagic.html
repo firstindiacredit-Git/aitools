@@ -103,7 +103,7 @@
 
     <script>
       window.__sm2mfp =
-        "https://semrush.pizeonfly.com/static-redirect/remote-integrations";
+        "https://semrush.toolzaccess.in/static-redirect/remote-integrations";
     </script>
 
     <script>
@@ -231,11 +231,18 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        window.__sm2init_toolkit__(
-          JSON.parse(
-            document.getElementById("toolkit_initial_state").textContent
-          )
-        );
+        const initToolkit = window.__sm2init_toolkit__;
+        if (typeof initToolkit === "function") {
+          initToolkit(
+            JSON.parse(
+              document.getElementById("toolkit_initial_state").textContent
+            )
+          );
+        } else {
+          console.warn(
+            "Skipped toolkit initialization: window.__sm2init_toolkit__ is unavailable."
+          );
+        }
       });
     </script>
     <script>
@@ -245,7 +252,15 @@
 
     <script src="/__static__/webpack/speedcurve_lux.5ef83b7e.js"></script>
     <script>
-      LUX.label = "Keyword Magic Tool - Landing";
+      if (window.LUX && typeof window.LUX === "object") {
+        window.LUX.label = "Keyword Magic Tool - Landing";
+      } else {
+        window.addEventListener("lux:loaded", () => {
+          if (window.LUX && typeof window.LUX === "object") {
+            window.LUX.label = "Keyword Magic Tool - Landing";
+          }
+        });
+      }
     </script>
 
     <script
@@ -337,13 +352,13 @@
 
     <link
       rel="canonical"
-      href="https://semrush.pizeonfly.com/analytics/keywordmagic/"
+      href="https://semrush.toolzaccess.in/analytics/keywordmagic/"
     />
 
     <link
       rel="alternate"
       hreflang="en"
-      href="https://semrush.pizeonfly.com/analytics/keywordmagic/"
+      href="https://semrush.toolzaccess.in/analytics/keywordmagic/"
     />
 
     <link
@@ -442,11 +457,11 @@
     <!-- #region Remote component snippet "head_bottom" -->
     <link
       rel="stylesheet"
-      href="https://semrush.pizeonfly.com/static-redirect/semrush-navigation/static/7dee5246/112c9baf.header.css"
+      href="https://semrush.toolzaccess.in/static-redirect/semrush-navigation/static/7dee5246/112c9baf.header.css"
     />
     <link
       rel="stylesheet"
-      href="https://semrush.pizeonfly.com/static-redirect/semrush-navigation/static/7dee5246/408a569d.sidebar.css"
+      href="https://semrush.toolzaccess.in/static-redirect/semrush-navigation/static/7dee5246/408a569d.sidebar.css"
     />
     <!-- #endregion -->
 
@@ -465,12 +480,12 @@
     <link
       rel="stylesheet"
       type="text/css"
-      href="https://semrush.pizeonfly.com/static-redirect/keyword-magic/kmt_vendor.style.277a9541dbc5aa5f229a.css"
+      href="https://semrush.toolzaccess.in/static-redirect/keyword-magic/kmt_vendor.style.277a9541dbc5aa5f229a.css"
     />
     <link
       rel="stylesheet"
       type="text/css"
-      href="https://semrush.pizeonfly.com/static-redirect/keyword-magic/kmt_66.style.4346417da581654c9b6a.css"
+      href="https://semrush.toolzaccess.in/static-redirect/keyword-magic/kmt_66.style.4346417da581654c9b6a.css"
     />
     <style type="text/css">
       ._3Fe4kai_Xjq6FTsX-RlW9N {
@@ -6902,7 +6917,7 @@
     <link
       class="_css-style-flags-16_1_1"
       rel="stylesheet"
-      href="//static.semrush.com/intergalactic/flags/16.1.1/sprite@1x.css"
+      href="//semrush.toolzaccess.in/static-redirect/intergalactic/flags/16.1.1/sprite@1x.css"
     />
     <meta
       name="viewport"
@@ -11196,7 +11211,7 @@
                                         data-ui-name="Link"
                                         role="link"
                                         tabindex="0"
-                                        href="https://semrush.pizeonfly.com/analytics/keywordmagic?q=movies&amp;db=us"
+                                        href="https://semrush.toolzaccess.in/analytics/keywordmagic?q=movies&amp;db=us"
                                         aria-label="Analyze the example keyword movies"
                                         data-path="landing.search_form.example_link"
                                         ><span
@@ -11212,7 +11227,7 @@
                                         data-ui-name="Link"
                                         role="link"
                                         tabindex="0"
-                                        href="https://semrush.pizeonfly.com/analytics/keywordmagic?q=how%20to%20buy%20audible%20books&amp;db=us"
+                                        href="https://semrush.toolzaccess.in/analytics/keywordmagic?q=how%20to%20buy%20audible%20books&amp;db=us"
                                         aria-label="Analyze the example keyword how to buy audible books"
                                         data-path="landing.search_form.example_link"
                                         ><span
@@ -11920,7 +11935,7 @@
                 >
                 <a
                   class="srf-footer__hide-mobile srf-footer__button srf-footer__button--success"
-                  href="https://semrush.pizeonfly.com/academy/courses/getting-started-with-semrush/"
+                  href="https://semrush.toolzaccess.in/academy/courses/getting-started-with-semrush/"
                   data-ga4-click=""
                   data-ga4-item-location="navigation.footer.get_started.button"
                   >Get started with Semrush</a

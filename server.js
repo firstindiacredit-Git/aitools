@@ -523,6 +523,11 @@ app.get("/envato2", (req, res) => {
   res.sendFile(path.join(__dirname, "envato2.html"));
 });
 
+app.get("/analytics/keywordmagic", (req, res) => {
+  res.sendFile(path.join(__dirname, "analytics/keywordmagic.html"));
+});
+
+
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
   console.log(

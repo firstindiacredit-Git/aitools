@@ -527,6 +527,9 @@ app.get("/analytics/keywordmagic", (req, res) => {
   res.sendFile(path.join(__dirname, "analytics/keywordmagic.html"));
 });
 
+app.get("/analytics/overview", (req, res) => {
+  res.sendFile(path.join(__dirname, "analytics/overview.html"));
+});
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);

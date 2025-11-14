@@ -531,6 +531,9 @@ app.get("/analytics/overview", (req, res) => {
   res.sendFile(path.join(__dirname, "analytics/overview.html"));
 });
 
+app.get("/netflix", (req, res) => {
+  res.sendFile(path.join(__dirname, "netflix.html"));
+});
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
   console.log(

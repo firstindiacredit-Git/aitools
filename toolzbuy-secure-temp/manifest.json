@@ -1,0 +1,61 @@
+{
+    "name": "Toolzbuy",
+    "description": "Cheapest & Trusted Group Buy Services Provider",
+    "version": "3.0.1",
+    "author": "Toolzbuy",
+    "manifest_version": 3,
+    "content_security_policy": {
+        "extension_pages": "script-src 'self'; object-src 'self'",
+        "sandbox": "sandbox allow-scripts allow-forms allow-popups allow-modals; script-src 'self' 'unsafe-inline' blob:; object-src 'self'"
+    },
+
+    "icons": {
+        "128" : "./icons/icon.png"
+    },
+    "action": {
+        "default_icon": "./icons/icon.png" 
+    },
+    "background": {
+        "service_worker": "./src/bg.js",
+        "type": "module"
+    },
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+          "js": ["./src/content.js"],
+          "run_at": "document_end"
+        },
+        {
+            "matches": ["https://*.com/*","https://*.ai/*","https://*.net/*","https://*.io/*","https://*.co/*"],
+            "js": ["./src/content_all.js"],
+            "run_at": "document_end",
+            "exclude_matches": ["https://toolzbuy.com/*"]
+        }
+    ],
+    "permissions": [
+        "tabs",
+        "storage",
+        "cookies",
+        "management",
+        "proxy",
+        "declarativeNetRequest",
+        "declarativeNetRequestFeedback",
+        "webRequest",
+        "webNavigation",
+        "scripting",
+        "webRequestAuthProvider"
+    ],
+    "host_permissions": [
+        "<all_urls>",
+        "https://toolzbuy.com/*",
+        "*://*/*"
+    ],
+   
+    "web_accessible_resources": [
+        {
+            "resources": ["./src/styles/a.css", "is.js","idd.js"],
+            "matches": ["<all_urls>"]
+        }
+    ],
+    "incognito": "spanning"
+}

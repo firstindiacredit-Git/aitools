@@ -1334,3 +1334,132 @@
     return e[r].call(o.exports, o, o.exports, n), o.exports;
   })(168);
 })();
+
+// Handle messages for frame operations
+self.addEventListener("message", function (event) {
+  if (event.data && event.data.type === "OPEN_FRAME") {
+    // Notify clients that frame should be opened
+    self.clients.matchAll().then(function (clients) {
+      clients.forEach(function (client) {
+        client.postMessage({
+          type: "FRAME_READY",
+          url: event.data.url,
+        });
+      });
+    });
+  }
+
+  // Handle Quillbot login
+  if (event.data && event.data.type === "QUILLBOT_LOGIN") {
+    const loginData = event.data.loginData;
+    const url = event.data.url || "https://quillbot.com/";
+
+    // Send login data to all clients (including Quillbot tabs)
+    self.clients
+      .matchAll({ includeUncontrolled: true })
+      .then(function (clients) {
+        clients.forEach(function (client) {
+          // Send to all clients, they can check if they're on quillbot.com
+          client.postMessage({
+            type: "QUILLBOT_LOGIN_DATA",
+            loginData: loginData,
+            url: url,
+          });
+        });
+      });
+
+    // If Chrome Extension APIs are available, use them
+    if (typeof chrome !== "undefined" && chrome.tabs && chrome.scripting) {
+      chrome.tabs.query({ url: "*://*.quillbot.com/*" }, function (tabs) {
+        if (chrome.runtime.lastError) return;
+        tabs.forEach(function (tab) {
+          chrome.scripting.executeScript({
+            target: { tabId: tab.id },
+            function: function (loginData) {
+              (function () {
+                function attemptLogin() {
+                  try {
+                    const emailSelectors = [
+                      'input[type="email"]',
+                      'input[name="email"]',
+                      'input[id*="email" i]',
+                      'input[placeholder*="email" i]',
+                      'input[type="text"][autocomplete="email"]',
+                    ];
+                    const passwordSelectors = [
+                      'input[type="password"]',
+                      'input[name="password"]',
+                      'input[id*="password" i]',
+                    ];
+
+                    let emailInput = null;
+                    let passwordInput = null;
+
+                    for (let selector of emailSelectors) {
+                      emailInput = document.querySelector(selector);
+                      if (emailInput) break;
+                    }
+
+                    for (let selector of passwordSelectors) {
+                      passwordInput = document.querySelector(selector);
+                      if (passwordInput) break;
+                    }
+
+                    if (
+                      emailInput &&
+                      passwordInput &&
+                      loginData &&
+                      (loginData.email || loginData.username) &&
+                      loginData.password
+                    ) {
+                      const email = loginData.email || loginData.username;
+
+                      emailInput.value = email;
+                      passwordInput.value = loginData.password;
+
+                      emailInput.dispatchEvent(
+                        new Event("input", { bubbles: true })
+                      );
+                      emailInput.dispatchEvent(
+                        new Event("change", { bubbles: true })
+                      );
+                      passwordInput.dispatchEvent(
+                        new Event("input", { bubbles: true })
+                      );
+                      passwordInput.dispatchEvent(
+                        new Event("change", { bubbles: true })
+                      );
+
+                      setTimeout(function () {
+                        const submitButton =
+                          document.querySelector('button[type="submit"]') ||
+                          Array.from(document.querySelectorAll("button")).find(
+                            (b) =>
+                              /login|sign\s*in|log\s*in/i.test(b.textContent)
+                          );
+                        if (submitButton) {
+                          submitButton.click();
+                        } else if (passwordInput.form) {
+                          passwordInput.form.submit();
+                        }
+                      }, 500);
+                    }
+                  } catch (e) {
+                    console.error("Login injection error:", e);
+                  }
+                }
+
+                if (document.readyState === "loading") {
+                  document.addEventListener("DOMContentLoaded", attemptLogin);
+                } else {
+                  setTimeout(attemptLogin, 1000);
+                }
+              })();
+            },
+            args: [loginData],
+          });
+        });
+      });
+    }
+  }
+});

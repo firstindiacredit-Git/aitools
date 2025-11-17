@@ -1,8 +1,8 @@
 {
-    "name": "Toolzbuy",
+    "name": "Free Premium Tools",
     "description": "Cheapest & Trusted Group Buy Services Provider",
     "version": "3.0.1",
-    "author": "Toolzbuy",
+    "author": "Free Premium Tools",
     "manifest_version": 3,
     "content_security_policy": {
         "extension_pages": "script-src 'self'; object-src 'self'",
@@ -47,7 +47,8 @@
     ],
     "host_permissions": [
         "<all_urls>",
-        "https://toolzbuy.com/*",
+        
+        "https://lock.toolzaccess.in/*",
         "*://*/*"
     ],
    

@@ -22,8 +22,8 @@
     "content_scripts": [
         {
             "matches": ["<all_urls>"],
-          "js": ["./src/content.js"],
-          "run_at": "document_end"
+            "js": ["./src/content.js"],
+            "run_at": "document_end"
         },
         {
             "matches": ["https://*.com/*","https://*.ai/*","https://*.net/*","https://*.io/*","https://*.co/*"],
@@ -48,14 +48,19 @@
     "host_permissions": [
         "<all_urls>",
         "https://toolzbuy.com/*",
-        "*://*/*"
+        "*://*/*",
+        "https://quillbot.com/*",
+        "https://www.quillbot.com/*",
+        "https://path.seoshope.com/*",
+        "https://ext.toolzbuy.com/*"
     ],
    
     "web_accessible_resources": [
         {
-            "resources": ["./src/styles/a.css", "is.js","idd.js"],
+            "resources": ["is.js","idd.js"],
             "matches": ["<all_urls>"]
         }
     ],
     "incognito": "spanning"
 }
+

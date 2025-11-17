@@ -1,1045 +1,699 @@
-<html dir="ltr" lang="en" data-my-extension-installed="true" data-toolzbuy-bridge-ready="true" data-toolzbuy-bridge-injected="true"><head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Quillbot Extension Access</title>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-  <![endif]-->
-<script async="" src="https://scripts.claspo.io/scripts/3B2918DE80014190B18DC19BC29A5975.js"></script><script type="text/javascript" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-      <!-- userLayoutHead() start -->
+<!DOCTYPE html>
+<html lang="en" translate="no" class="height100">
+  
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="https://denali-static.grammarly.com/files/f1d4cabc38892f860a29/apple-touch-icon-v2.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="https://denali-static.grammarly.com/files/6dae2a07debfba035d6e/favicon-16x16-v2.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="https://denali-static.grammarly.com/files/0018912fc1389f26f2ed/favicon-32x32-v2.png"
+    />
+    <link
+      rel="shortcut icon"
+      sizes="192x192"
+      href="https://denali-static.grammarly.com/files/60ba9752e5a20b4c5bd4/android-chrome-192x192-v2.png"
+    />
+    <link
+      rel="shortcut icon"
+      sizes="256x256"
+      href="https://denali-static.grammarly.com/files/1a7fae8397bcb67ea3ee/android-chrome-256x256-v2.png"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://denali-static.grammarly.com/files/c092f43056eaf43e3555/favicon-v2.ico"
+    />
+    <link
+      rel="mask-icon"
+      href="https://denali-static.grammarly.com/files/8ce5fa661b7a984a90fa/safari-pinned-tab-v2.svg"
+    />
+    <meta name="msapplication-TileColor" content="#027E6F" />
+    <meta
+      name="msapplication-TileImage"
+      content="https://denali-static.grammarly.com/files/2d3b7610d275e448bcee/mstile-150x150-v2.png"
+    />
+    <meta name="application-name" content="Grammarly" />
+    <script data-verified="true">
+      (function () {
+        var itunesContent =
+          '"app-id=1158877342, app-argument=' + window.location.href + '"';
+        document.head.innerHTML +=
+          '<meta name="apple-itunes-app" content=' + itunesContent + " />";
+      })();
+    </script>
+    <title>Grammarly</title>
+    <link rel="preconnect" href="https://data.grammarly.com" />
+    <link rel="preconnect" href="https://gnar.grammarly.com" />
+    <link rel="preconnect" href="https://subscription.grammarly.com" />
+    <link rel="preconnect" href="https://auth.grammarly.com" />
+    <link rel="preconnect" href="https://f-log-editor.grammarly.com" />
+    <link rel="preconnect" href="https://static.institution.grammarly.com" />
+    <link
+      rel="chrome-webstore-item"
+      href="https://chrome.google.com/webstore/detail/kbfnbcaeplbcioakkpcpgfkobkghlhen"
+    />
+    <style id="typestyleTarget"></style>
+    <link
+      rel="stylesheet"
+      href="https://denali-static.grammarly.com/css/49f085a7842e8481de7d/stylesv26.css"
+    />
+    <link
+      rel="preload"
+      as="font"
+      crossorigin="anonymous"
+      href="https://static-web.grammarly.com/shared/fonts/product/v1/inter-regular.woff2"
+    />
+    <link
+      rel="preload"
+      as="font"
+      crossorigin="anonymous"
+      href="https://static-web.grammarly.com/shared/fonts/product/v1/inter-medium.woff2"
+    />
+    <link
+      rel="preload"
+      as="font"
+      crossorigin="anonymous"
+      href="https://static-web.grammarly.com/shared/fonts/product/v1/inter-semibold.woff2"
+    />
+    <link
+      rel="preload"
+      as="font"
+      crossorigin="anonymous"
+      href="https://static-web.grammarly.com/shared/fonts/product/v1/inter-bold.woff2"
+    />
+    <link
+      rel="preload"
+      as="font"
+      crossorigin="anonymous"
+      href="https://static-web.grammarly.com/shared/fonts/product/v1/matter-semibold.woff2"
+    />
+    <link
+      rel="preload"
+      as="font"
+      crossorigin="anonymous"
+      href="https://static-web.grammarly.com/shared/fonts/product/v1/matter-bold.woff2"
+    />
+  </head>
+  <body class="editorTs height100" data-verified="true">
+    <div id="page" class="height100" data-verified="true"></div>
+    <script data-verified="true">
+      (function () {
+        var buildInfo = {
+          date: "2025-11-15T22:30:20Z",
+          version: "1.5.43-6692+master",
+          branch: "master",
+          commit: "d63add833e206e725d7c782581de41fce2624ad4",
+          build: "144596",
+          env: "prod",
+        };
+        var appConfig = {
+          env: "prod",
+          logLevel: "INFO",
+          accumulateCrashLogLevel: "DEBUG",
+          sendCrashOnLogLevel: "ERROR",
+          collectLogs: true,
+          collectCrashLogs: true,
+          copyLogsToConsole: false,
+          crashLogsCacheSize: 100,
+          debugLogsCacheSize: 100,
+          tracking: { state: "enabled" },
+          alertCache: { prefix: "editorTsAlertCache", version: "4" },
+          mutedCategoriesCache: {
+            prefix: "mutedCategoriesCache",
+            version: "0",
+          },
+          outcomeScoreCache: { prefix: "scoreCache", version: "0" },
+          userSettingsPrefix: "userSettings",
+          userSettingsVersion: "1",
+          defaultDialect: "american",
+          notificationShowTimeMs: 7000,
+          maxNotificationsOnTheScreen: 3,
+          selfUpdate: {
+            versionCheckInterval: 3540000,
+            selfUpdateDelay: 43200000,
+            canReloadCheckInterval: 5000,
+            blockingModalAutoReloadDelay: 60000,
+            retryFailedVersionCheckInterval: 300000,
+            retryFailedVersionCheckLimit: 20,
+            debugBuildVersion: "auto",
+            versionFilePath: "/version.json",
+          },
+          pingMaybeGnarDelay: 3600000,
+          domains: {
+            cookie: ".grammarly.com",
+            localServer: "denali-local.grammarly.com",
+          },
+          api: {
+            authUrl: "https://auth.grammarly.com/v3",
+            authUrlV4: "https://auth.grammarly.com/v4/api",
+            institutionUrl: "https://gateway.grammarly.com/institution/api",
+            snippetsUrl: "https://gateway.ppgr.io/snippets/v1/snippets",
+            clientControlsUrl: "https://gateway.grammarly.com/client-controls",
+            settingsRegistryUrl:
+              "https://gateway.grammarly.com/settings-registry/v1",
+            institutionAdminUrl:
+              "https://gateway.grammarly.com/institution/api/institution/admin",
+            institutionMembersUrl:
+              "https://gateway.grammarly.com/institution/api/institution/members",
+            institutionInviteesUrl:
+              "https://gateway.grammarly.com/institution/api/institution/invitees",
+            institutionGroupsUrl:
+              "https://gateway.grammarly.com/institution/api/groups",
+            institutionVaultUrl:
+              "https://gateway.grammarly.com/institution/api/vault",
+            knowledgeHubUrl:
+              "https://gateway.grammarly.com/knowledge-hub/v1/institution",
+            analyticsUrl:
+              "https://gateway.grammarly.com/analytics/api/institution/statistics",
+            analyticsPrivateUrl: "https://analytics.grammarly.com/private/api",
+            institutionAnalyticsUrl:
+              "https://gateway.grammarly.com/institution/public/api/institution/statistics",
+            institutionTonesUrl: "https://gateway.grammarly.com/brand-tones/v1",
+            profileTonesUrl: "https://gateway.grammarly.com/brand-tones/v1",
+            tonesUrl: "https://gateway.ppgr.io/brand-tones/v1",
+            dapiUrl: "https://data.grammarly.com",
+            doxUrl: "https://dox.grammarly.com",
+            doxWsUrl: "wss://dox.grammarly.com",
+            irbisUrl: "https://irbis.grammarly.com",
+            subscriptionUrl: "https://subscription.grammarly.com/api/v1",
+            paymentsUrl: "https://api.payments.grammarly.com",
+            discountUrl: "https://irbis.grammarly.com/api/discounts",
+            dataReportUrl: "https://datareport.grammarly.com",
+            capiWsUrl: "wss://capi.grammarly.com/freews",
+            defaultCapiWsUrl: "wss://capi.grammarly.com/freews",
+            gatewayCapiWsUrl: "wss://gateway.grammarly.com/capi/freews",
+            internalCapiWsUrl: "wss://gateway.grammarly.com/k8capi/freews",
+            k8sCapiWsUrl: "wss://k8s-capi-green.grammarly.com/freews",
+            capiApiUrl: "https://capi.grammarly.com/api",
+            gnarApi: {
+              url: "https://gnar.grammarly.com",
+              ingestionUrl: "https://in.grammarly.com/v1/events",
+            },
+            femetricsUrl: "https://editor.femetrics.grammarly.io/batch/import",
+            felogUrl: "https://f-log-editor.grammarly.io",
+            felogDebugUrl: "https://f-log-editor-debug.grammarly.io",
+            sumoUrl:
+              "https://endpoint2.collection.us2.sumologic.com/receiver/v1/http/ZaVnC4dhaV0Bxac28IqT2frgzsjX7HEotu8EZEZr07YE9RWLCzrOMGwzO9aL6c_iSiidkEplFOod2igKIxz_7s2CHlXc2u-XuLpetEBK1fV6xjfN2Sw2gA==",
+            crashLogUrl: "https://f-log-editor.grammarly.io/crash",
+            onlineTestUrl: "/online-test.json",
+            wsTest: "wss://wstest.grammarly.com",
+            proofitResultUrl:
+              "https://dox.grammarly.com/documents/_docId_/proofread",
+            redirect: "https://redirect.grammarly.com/redirect",
+            mailApiUrl: "https://g-mail.grammarly.com",
+            ssoUrl: "https://sso.grammarly.com",
+            scimUrl: "https://gateway.grammarly.com/auth/api/token/scim",
+            voxInstitutionUrl:
+              "https://gateway.grammarly.com/vox/v2/institution",
+            writingStylesUrl: "https://gateway.grammarly.com/writing-style",
+            appsUrl: "https://apps.grammarly.com",
+            tokensUrl: "https://tokens.grammarly.com",
+            cheetahUrl:
+              "https://capi.grammarly.com/api/configuration/cheetah/v1/settings",
+            cheetahInstitutionUrl:
+              "https://gateway.grammarly.com/cheetah/v1/institution/settings",
+            inProductReportUrl:
+              "https://in-product.report.grammarly.io/v1/report",
+            vito: "https://gateway.grammarly.com/vito",
+            passportUrl:
+              "https://gateway.grammarly.com/passport/api/v1/passport",
+            uphookhub: "https://gateway.grammarly.com/uhub",
+          },
+          app: {
+            nameWeb: "editor",
+            nameMacEditor: "macEditor",
+            nameDesktop: "desktopEditor",
+            webOnboarding: "webOnboarding",
+          },
+          urls: {
+            free: "/free",
+            account: "https://account.grammarly.com",
+            versionHistory: "https://app.grammarly.com/documentVersionHistory",
+          },
+          onlineEditor: {
+            base: "https://app.grammarly.com",
+            docId: "https://app.grammarly.com/ddocs/",
+          },
+          external: {
+            gmail: "https://mail.google.com/",
+            gDocs: "https://docs.google.com",
+            outlook: "https://outlook.live.com/mail",
+          },
+          funnel: {
+            base: "https://www.grammarly.com",
+            resetPassword: "https://www.grammarly.com/resetpassword",
+            accountDeleted: "https://www.grammarly.com/account-deleted",
+            businessLanding: "https://www.grammarly.com/business/e",
+            businessStyleguideLanding:
+              "https://www.grammarly.com/business/styleguide",
+            businessUpgradeLanding:
+              "https://www.grammarly.com/upgrade/business/try",
+            subscribe: "https://www.grammarly.com/subscribe",
+            upgrade: "https://www.grammarly.com/upgrade",
+            upgradeTry: "https://www.grammarly.com/upgrade/try",
+            inviteMembers: "https://www.grammarly.com/invite/pro",
+            personalize: "https://www.grammarly.com/personalize",
+            plans: "https://www.grammarly.com/plans",
+            pro: "https://www.grammarly.com/pro",
+            signin: "https://www.grammarly.com/signin",
+            signupEmbed:
+              "https://grammarly.com/signup/embed?client_id=demoEditor&hide_title_link=1",
+            socialSignin: "https://www.grammarly.com/signin/app",
+            signup: "https://www.grammarly.com/signup",
+            mainPage: "https://www.grammarly.com/",
+            deleteSocialAccount:
+              "https://www.grammarly.com/social/delete-account",
+            subscriptionCancellationSurvey:
+              "https://www.grammarly.com/subscription-cancellation-survey",
+            keyboardInstall: "https://www.grammarly.com/keyboard",
+            desktopAppInstall: "https://www.grammarly.com/native",
+            claimedUserJoinFallback:
+              "https://redirect.grammarly.com/redirect?business_join=1",
+            userTrustGuidelines: "https://www.grammarly.com/trust",
+            llamaServiceDownload: "https://www.grammarly.com/service/download",
+            llamaServiceDownloadDirect:
+              "https://www.grammarly.com/service/download/direct",
+            productRecommendation:
+              "https://www.grammarly.com/product/recommendation",
+            tour: "https://www.grammarly.com/tour",
+            facebookTour: "https://www.grammarly.com/tour-facebook",
+            gDocsTour: "https://www.grammarly.com/tour-gdocs",
+            gmailTour: "https://www.grammarly.com/tour-gmail",
+            canvasTour: "https://grammarly.com/tour-canvas",
+            linkedInTour: "https://grammarly.com/tour-linkedin",
+            outlookTour: "https://grammarly.com/tour-outlook",
+            slackTour: "https://grammarly.com/tour-slack",
+          },
+          llama: {
+            windows:
+              "https://download-windows.grammarly.com/w/GrammarlyInstaller.exe",
+            mac: "https://download-mac.grammarly.com/Grammarly.dmg",
+          },
+          mobileApp: {
+            android:
+              "https://play.google.com/store/apps/details?id=com.grammarly.android.keyboard",
+            iOS: "https://apps.apple.com/us/app/grammarly-grammar-keyboard/id1158877342",
+          },
+          extension: {
+            autoCitations: {
+              demoPageUrl:
+                "https://www.sciencedirect.com/science/article/abs/pii/S0885200618300826",
+            },
+            chrome: {
+              installURL:
+                "https://chrome.google.com/webstore/detail/kbfnbcaeplbcioakkpcpgfkobkghlhen",
+              infoURL:
+                "https://chrome.google.com/webstore/detail/grammarly-spell-checker-g/kbfnbcaeplbcioakkpcpgfkobkghlhen?hl=en",
+            },
+            firefox: {
+              installURL:
+                "https://addons.mozilla.org/firefox/downloads/latest/566314/addon-566314-latest.xpi",
+              infoURL:
+                "https://addons.mozilla.org/en-US/firefox/addon/grammarly-1/",
+            },
+            safari: {
+              installURL:
+                "https://apps.apple.com/us/app/grammarly-for-safari/id1462114288?ls=1&mt=12",
+            },
+            edge: {
+              installURL: "ms-windows-store://pdp?ProductId=9p59wxtbhzzm",
+              infoURL:
+                "https://www.microsoft.com/en-us/store/p/grammarly-for-microsoft-edge/9p59wxtbhzzm?rtc=1",
+            },
+            edgeChromium: {
+              installURL:
+                "https://microsoftedge.microsoft.com/addons/detail/grammarly-for-microsoft-e/cnlefmmeadmemmdciolhbnfeacpdfbkd",
+            },
+          },
+          edu: { adminPanelURL: "https://account.grammarly.com/admin" },
+          support: {
+            login: "https://support.grammarly.com/login",
+            email: "support@grammarly.com",
+            mainPage: "https://support.grammarly.com/",
+            newRequest: "https://support.grammarly.com/hc/en-us/requests/new",
+            contact: "https://www.grammarly.com/contact",
+            emailExistsKBUrl:
+              "https://support.grammarly.com/hc/en-us/articles/115000090791-Changing-your-email-to-an-email-that-already-exists",
+            safariDownloadFilesKBUrl:
+              "https://support.grammarly.com/hc/en-us/articles/360001105952",
+            rtfCompatibilityUrl:
+              "https://support.grammarly.com/hc/en-us/articles/115000091512-Preserve-text-formatting",
+            documentAcceptTrackedChanges:
+              "https://support.office.com/en-us/article/Accept-tracked-changes-4838d24c-d5d1-4c6c-8e39-78b44bd2b4cc",
+            introducingGrammarlyEditor:
+              "https://support.grammarly.com/hc/en-us/articles/360003474732-Introducing-the-Grammarly-Editor",
+            troubleshooting: {
+              connectionTroubleshooting:
+                "https://support.grammarly.com/hc/en-us/articles/115000090271-Network-configuration-blocks-Grammarly-services",
+              connectionIsUnstable:
+                "https://support.grammarly.com/hc/en-us/articles/360024580031-Error-Your-Internet-Connection-Is-Unstable",
+              somethingWentWrong:
+                "https://support.grammarly.com/hc/en-us/articles/360001608811-Error-Hm-something-went-wrong",
+              diagnosticTestPath: "/diagnostic-test?origin=editor",
+              serverEncounteredAnError:
+                "https://support.grammarly.com/hc/en-us/articles/115000090252-Error-The-server-encountered-an-error-Please-try-to-reload-the-page",
+              howDoIClearCacheAndCookies:
+                "https://support.grammarly.com/hc/en-us/articles/115000090272-How-do-I-clear-cache-and-cookies-",
+              statusPage: "https://status.grammarly.com",
+              textCheckingUnavailable:
+                "https://support.grammarly.com/hc/en-us/articles/115000090251-Error-Text-Checking-Is-Temporarily-Unavailable",
+            },
+          },
+          privacyPolicy: "https://www.grammarly.com/privacy-policy",
+          termsOfService: "https://www.grammarly.com/terms",
+          account: {
+            customize:
+              "https://redirect.grammarly.com/redirect?profile_dictionary=1",
+            subscription: "https://account.grammarly.com/subscription",
+            adminSubscription:
+              "https://account.grammarly.com/admin/subscription",
+            members: "https://account.grammarly.com/admin/members",
+            membersWithInviteModal:
+              "https://account.grammarly.com/admin/members?navigation=invite",
+            styleGuide: "https://account.grammarly.com/admin/style-guide",
+            writingStyle:
+              "https://account.grammarly.com/admin/style-guide-writing-style",
+            suggestions:
+              "https://redirect.grammarly.com/redirect?profile_suggestions=1",
+            writingProgress: "https://account.grammarly.com/writing-progress",
+          },
+          preconnectLinks: [
+            "https://data.grammarly.com",
+            "https://gnar.grammarly.com",
+            "https://subscription.grammarly.com",
+            "https://auth.grammarly.com",
+            "https://f-log-editor.grammarly.com",
+            "https://static.institution.grammarly.com",
+          ],
+          ideas: { galleryURL: "https://app.grammarly.com/ideas/sales" },
+          aiEditor: {
+            documentURL: "https://coda.grammarly.com",
+            codaCdn: "https://cdn.coda.io",
+          },
+          sprig: { environmentId: "TSFBsQOLWCAu", enabled: true },
+        };
+        window.Grammarly = { denali: { buildInfo: buildInfo } };
+        if (appConfig) window.Grammarly.denali.appConfig = appConfig;
 
-
-<meta name="generator" content="aMember Pro">
-<meta name="robots" content="noindex">
-<link href="https://use.fontawesome.com/releases/v6.5.1/css/all.css" media="screen" rel="stylesheet" crossorigin="anonymous">
-<link href="/application/default/themes/toolzbuy/public/css/reset.css?2651346969" rel="stylesheet">
-<link href="/application/default/themes/toolzbuy/public/css/amember.css?2651346969" rel="stylesheet">
-<link href="/application/default/themes/toolzbuy/public/css/site.css?2815654277" rel="stylesheet">
-<link href="/application/default/views/public/js/jquery/jquery.ui.css?2651346969" rel="stylesheet">
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-180-wrapper {
-  background: url('/data/public/content/70_70/64757446a8040.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-201-wrapper {
-  background: url('/data/public/content/70_70/660abaa78e984.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-202-wrapper {
-  background: url('/data/public/content/70_70/660ac227a0a18.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-241-wrapper {
-  background: url('/data/public/content/70_70/618f9a5091fc1.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-5-wrapper {
-  background: url('/data/public/content/70_70/618f9a60dd767.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-191-wrapper {
-  background: url('/data/public/content/70_70/658a51b96fb05.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-6-wrapper {
-  background: url('/data/public/content/70_70/618f9a6c7402e.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-200-wrapper {
-  background: url('/data/public/content/70_70/65e87e2723e43.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-111-wrapper {
-  background: url('/data/public/content/70_70/622419de5b30c.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-107-wrapper {
-  background: url('/data/public/content/70_70/620d2a03cef20.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-73-wrapper {
-  background: url('/data/public/content/70_70/6718e8a969a8b.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-199-wrapper {
-  background: url('/data/public/content/70_70/65e06005511bd.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-106-wrapper {
-  background: url('/data/public/content/70_70/620cedabb7d51.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-8-wrapper {
-  background: url('/data/public/content/70_70/618f9a9694041.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-46-wrapper {
-  background: url('/data/public/content/70_70/618f9aa35998e.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-238-wrapper {
-  background: url('/data/public/content/70_70/6881a62fa02c3.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-242-wrapper {
-  background: url('/data/public/content/70_70/6892df08500d1.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-239-wrapper {
-  background: url('/data/public/content/70_70/6881b563f3725.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-9-wrapper {
-  background: url('/data/public/content/70_70/618f9b1954605.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-141-wrapper {
-  background: url('/data/public/content/70_70/62cd2726b7eb6.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-155-wrapper {
-  background: url('/data/public/content/70_70/63639fef0eb90.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-120-wrapper {
-  background: url('/data/public/content/70_70/6266bb264a3be.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-84-wrapper {
-  background: url('/data/public/content/70_70/61a0f520ba111.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-101-wrapper {
-  background: url('/data/public/content/70_70/6239eb5532604.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-223-wrapper {
-  background: url('/data/public/content/70_70/618f9c5807ef9.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-212-wrapper {
-  background: url('/data/public/content/70_70/618f9b69e4005.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-15-wrapper {
-  background: url('/data/public/content/70_70/618f9b69e4005.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-31-wrapper {
-  background: url('/data/public/content/70_70/618f9bea9c042.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-19-wrapper {
-  background: url('/data/public/content/70_70/618f9b58b9395.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-122-wrapper {
-  background: url('/data/public/content/70_70/6278b84a7c071.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-47-wrapper {
-  background: url('/data/public/content/70_70/618f9ab1e8c42.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-62-wrapper {
-  background: url('/data/public/content/70_70/618f9adc4f272.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-146-wrapper {
-  background: url('/data/public/content/70_70/62f8b27219ffe.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-21-wrapper {
-  background: url('/data/public/content/70_70/618f9b754ba68.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-195-wrapper {
-  background: url('/data/public/content/70_70/658bc707ac4bb.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-194-wrapper {
-  background: url('/data/public/content/70_70/658bc1686890e.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-88-wrapper {
-  background: url('/data/public/content/70_70/61a104bec8d69.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-25-wrapper {
-  background: url('/data/public/content/70_70/618f9ba9b2faf.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-29-wrapper {
-  background: url('/data/public/content/70_70/618f9bd16ec98.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-30-wrapper {
-  background: url('/data/public/content/70_70/618f9bdb41434.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-32-wrapper {
-  background: url('/data/public/content/70_70/618f9bf5af644.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-149-wrapper {
-  background: url('/data/public/content/70_70/631189257b405.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-177-wrapper {
-  background: url('/data/public/content/70_70/618f9c112739b.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-38-wrapper {
-  background: url('/data/public/content/70_70/618f9c2b1f872.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-89-wrapper {
-  background: url('/data/public/content/70_70/61a7940802245.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-82-wrapper {
-  background: url('/data/public/content/70_70/6190c11192c1a.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-85-wrapper {
-  background: url('/data/public/content/70_70/61a100537ac76.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-145-wrapper {
-  background: url('/data/public/content/70_70/618f9bb8e29eb.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-168-wrapper {
-  background: url('/data/public/content/70_70/618f9bb8e29eb.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-150-wrapper {
-  background: url('/data/public/content/70_70/631eb403d1132.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-70-wrapper {
-  background: url('/data/public/content/70_70/618f9c929789b.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-102-wrapper {
-  background: url('/data/public/content/70_70/61e597bca8d30.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-14-wrapper {
-  background: url('/data/public/content/70_70/61d1b9b12fe9d.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-13-wrapper {
-  background: url('/data/public/content/70_70/618f9b2415343.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-104-wrapper {
-  background: url('/data/public/content/70_70/61efcfbce4fa6.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-63-wrapper {
-  background: url('/data/public/content/70_70/63d7bc861c4b5.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-169-wrapper {
-  background: url('/data/public/content/70_70/63dc025ae0ac8.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-171-wrapper {
-  background: url('/data/public/content/70_70/63fc305c5e625.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-52-wrapper {
-  background: url('/data/public/content/70_70/64d8962317565.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-190-wrapper {
-  background: url('/data/public/content/70_70/658a5153ce1bd.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-205-wrapper {
-  background: url('/data/public/content/70_70/6663fa9264ba8.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-207-wrapper {
-  background: url('/data/public/content/70_70/66684b366c44f.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-211-wrapper {
-  background: url('/data/public/content/70_70/622f6cc5f145b.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-215-wrapper {
-  background: url('/data/public/content/70_70/66c3372df0604.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-216-wrapper {
-  background: url('/data/public/content/70_70/66c337cddc993.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-218-wrapper {
-  background: url('/data/public/content/70_70/673171ef3ef92.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/* 
-#member-resources li#resource-link-page-237-wrapper {
-  background: url('/data/public/content/70_70/68811223c4cca.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-243-wrapper {
-  background: url('/data/public/content/70_70/68ee6b180679e.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<style type="text/css" media="screen">
-/*
-#member-resources li#resource-link-page-245-wrapper {
-  background: url('/data/public/content/70_70/68f7add04559f.png') left top no-repeat;
-  padding-left: 80px;
-  min-height: 70px;
-}
-*/</style>
-<script type="text/am-vars">{"public-path":"\/","api-url":"\/","datepickerDefaults":{"closeText":"Done","prevText":"Prev","nextText":"Next","currentText":"Today","monthNames":["January","February","March","April","May","June","July","August","September","October","November","December"],"monthNamesShort":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]},"langCount":1,"msg_select_state":"[Select state]"}</script>
-
-<script type="text/javascript">
-  //<!--
-  window.uiDateFormat = "d M yy";
-window.uiWeekFirstDay = "0";
-window.momentDateFormat = "D MMM YYYY";
-window.uiDefaultDate = new Date(2025,10,17);
-  //-->
-</script>
-<script type="text/javascript" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script type="text/javascript" src="/application/default/views/public/js/vendors-admin-user.js?2651346969"></script>
-<script type="text/javascript" src="/application/default/views/public/js/vendors-user.js?2651346969"></script>
-<script type="text/javascript" src="/application/default/views/public/js/user.js?2651346969"></script>
-<script type="text/javascript">
-  //<!--
-  am_i18n = {"toggle_password_visibility":"Toggle Password Visibility","password_strength":"Password Strength","upload_browse":"browse","upload_upload":"upload","upload_files":"Uploaded Files","upload_uploading":"Uploading...","upload_remove_file":"remove file","ms_please_select":"-- Please Select --","ms_select_all":"Select All","please_wait":"Please Wait...","popup_close":"Close","file_style_browse":"Browse\u2026"};    //-->
-</script>
-<script type="text/javascript">
-  //<!--
-  window.rootUrl = ""; //kept for compatibilty only! use amUrl() instead
-function amUrl(u, return_path) {
-  var ret = "" + u;
-  return (return_path || 0) ? [ret, []] : ret;
-};    //-->
-</script>
-
-
-<!-- userLayoutHead() finish -->
-  <!-- Custom CSS -->
-  <link href="/application/default/themes/toolzbuy/public/css/c3.min.css" rel="stylesheet">
-  <link href="/application/default/themes/toolzbuy/public/css/noobjoker.css" rel="stylesheet">
-  <link href="/application/default/themes/toolzbuy/public/css/chartist.min.css" rel="stylesheet">
-  <link href="/application/default/themes/toolzbuy/public/css/jquery-jvectormap-2.0.2.css" rel="stylesheet">
-  <!-- Custom CSS -->
-  <link href="/application/default/themes/toolzbuy/public/css/style.member.min.css" rel="stylesheet">
-
-<!-- Pixel Code for https://my.popify.site/ -->
-<script async="" src="https://my.popify.site/pixel/qyo13n0c3tie6d9nb1uads7ota8gpgeg"></script>
-<!-- END Pixel Code -->
-
-
-
-<!-- Add this right before the closing </head> tag in your layout.phtml file -->
-<style>
-@keyframes rotate {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-</style>
-</head>
-
-<body data-extension-version="3.0.1" cz-shortcut-listen="true">
-
-
-
-
-<!-- ============================================================== -->
-<!-- Preloader - style you can find in spinners.css -->
-<!-- ============================================================== -->
-<div class="preloader" style="display: none;">
-  <div class="lds-ripple">
-      <div class="lds-pos"></div>
-      <div class="lds-pos"></div>
-  </div>
-</div>
-<!-- ============================================================== -->
-<!-- Main wrapper - style you can find in pages.scss -->
-<!-- ============================================================== -->
-<div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
-  <!-- ============================================================== -->
-  <!-- Topbar header - style you can find in pages.scss -->
-  <!-- ============================================================== -->
-  <header class="topbar" data-navbarbg="skin6">
-      <nav class="navbar top-navbar navbar-expand-md navbar-light">
-          <div class="navbar-header" data-logobg="skin6">
-              <!-- This is for the sidebar toggle which is visible on mobile only -->
-              <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
-              <!-- ============================================================== -->
-              <!-- Logo -->
-              <!-- ============================================================== -->
-<!-- Replace the existing navbar-brand div with this code -->
-<!-- Replace the entire navbar-brand div with this code -->
-<div class="navbar-brand">
-  <a href="/member" style="text-decoration: none; display: flex; align-items: center; padding: 0;">
-      <div style="display: flex; align-items: center; margin: 0; padding: 0;">
-          <div style="width: 46px; height: 46px; background: #FF7052; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-right: 10px;">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width: 28px; height: 28px; animation: rotate 8s linear infinite;">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <line x1="2" y1="12" x2="22" y2="12"></line>
-                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-              </svg>
-          </div>
-          <div style="font-size: 24px; font-weight: 700; color: #FF7052;">ToolzBuy</div>
-      </div>
-  </a>
-</div>
-              <!-- ============================================================== -->
-              <!-- End Logo -->
-              <!-- ============================================================== -->
-              <!-- ============================================================== -->
-              <!-- Toggle which is visible on mobile only -->
-              <!-- ============================================================== -->
-              <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i class="ti-more"></i></a>
-          </div>
-          <!-- ============================================================== -->
-          <!-- End Logo -->
-          <!-- ============================================================== -->
-          <div class="navbar-collapse collapse" id="navbarSupportedContent">
-              <!-- ============================================================== -->
-              <!-- toggle and nav items -->
-              <!-- ============================================================== -->
-              <ul class="navbar-nav float-left mr-auto ml-3 pl-1">
-                  <!-- Notification -->
-                  <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle pl-md-3 position-relative" href="javascript:void(0)" id="bell" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <span></span>
-
-                      </a>
-                  </li>
-                  <!-- End Notification -->
-                  <!-- ============================================================== -->
-                  <!-- create new -->
-                  <!-- ============================================================== -->
-              </ul>
-              <!-- ============================================================== -->
-              <!-- Right side toggle and nav items -->
-              <!-- ============================================================== -->
-              <ul class="navbar-nav float-right">
-                  <!-- ============================================================== -->
-                  <!-- User profile and search -->
-                  <!-- ============================================================== -->
-                  <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <img src="https://secure.gravatar.com/avatar/05a0475c85bf7d27ca0b709c51e2d5de94a6bd19ef8ae33306d1733ed35291f9?d=&amp;s=40" alt="avatar logo" class="rounded-circle" width="40">
-
-
-
-
-
-
-                          <span class="ml-2 d-none d-lg-inline-block"><span>Hello,</span> <span class="text-dark">afzal9000i</span> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down svg-icon"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
-                      </a>
-                      <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
-                          <a class="dropdown-item" href="/profile"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user svg-icon mr-2 ml-1"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                              My Profile</a>
-
-<!--
-
-                          <a class="dropdown-item" href="/profile"><i data-feather="settings"
-                                                                                              class="svg-icon mr-2 ml-1"></i>
-                              Account Setting</a>
-                              
-                              -->
-
-<!--
-                          <a class="dropdown-item" href="/helpdesk"><i               class="fas fa-ticket-alt mr-2 ml-1"></i>
-                              Support Tickets</a>
-
-                          <a class="dropdown-item" target="_blank" href="https://fb.me/mileseoo"><i style="size: 29px;" class="fab fa-facebook-messenger mr-2 ml-1"></i>
-                              Fb chat</a>
-                              
-                              -->
-                              
-                              
-                          <a class="dropdown-item" href="/logout"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-power svg-icon mr-2 ml-1"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path><line x1="12" y1="2" x2="12" y2="12"></line></svg>
-                              Logout</a>
-                          <div class="dropdown-divider"></div>
-                      </div>
-                  </li>
-                  <!-- ============================================================== -->
-                  <!-- User profile and search -->
-                  <!-- ============================================================== -->
-              </ul>
-          </div>
-      </nav>
-  </header>
-  <!-- ============================================================== -->
-  <!-- End Topbar header -->
-  <!-- ============================================================== -->
-  <!-- ============================================================== -->
-
-  <!-- Left Sidebar - style you can find in sidebar.scss  -->
-  <!-- ============================================================== -->
-  <aside class="left-sidebar" data-sidebarbg="skin6">
-      <!-- Sidebar scroll-->
-      <div class="scroll-sidebar ps-container ps-theme-default ps-active-y" data-sidebarbg="skin6" data-ps-id="bf8b12df-3b45-b63a-3662-6dbab51d3bb1">
-          <!-- Sidebar navigation-->
-          <nav class="sidebar-nav">
-              <ul id="sidebarnav">
-                  <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="/member" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home feather-icon"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg><span class="hide-menu">Dashboard</span></a></li>
-                  <li class="list-divider"></li>
-   
-   <!--               <li class="nav-small-cap"><span class="hide-menu">Profile</span></li> -->
-<!--
-                  <li class="sidebar-item"> <a class="sidebar-link" href="/profile"
-                                               aria-expanded="false"><i class="fas fa-user"></i><span
-                                  class="hide-menu">Profile
-                              </span></a>
-                  </li>
-              
-              -->    
-              
-                  <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="/member/payment-history" aria-expanded="false"><i class="fab fa-cc-visa"></i><span class="hide-menu">Payment history</span></a></li>
-
-                  <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="/page/order-renew" aria-expanded="false"><i class="fas fa-cart-plus"></i><span class="hide-menu">Order/Renew</span></a></li>
-
-                  <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="/page/affiliate" aria-expanded="false"><i class="fas fa-dollar-sign"></i><span class="hide-menu">Affilate</span></a></li>
-
-                  <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="/helpdesk" aria-expanded="false"><i class="fas fa-ticket-alt"></i><span class="hide-menu">Help Desk</span></a></li>
-
-                  <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="/page/faq" aria-expanded="false"><i class="fas fa-question"></i><span class="hide-menu">FAQs</span></a></li> 
-
-                  <li class="list-divider"></li>
-                  <li class="nav-small-cap"><span class="hide-menu">DOWNLOAD OUR EXTENSION</span></li>
-                  <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="/page/download-exe" aria-expanded="false"><i class="fas fa-download"></i><span class="hide-menu">Extension</span></a></li>
-                                  
-                                  
-                  <li class="list-divider"></li>
-                  <li class="nav-small-cap"><span class="hide-menu"></span></li>
-                 <!-- <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="https://t.me/seo_group_buy" target="_blank"
-                                               aria-expanded="false"><i class="fab fa-telegram"></i><span
-                                  class="hide-menu">Join Us on Telegram</span></a></li> -->
-                                  
-                  <!--<li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="https://app.toolzbuy.com/helpdesk" target="_blank"-->
-                  <!--                             aria-expanded="false"><img src="https://toolzbuy.com/images/Invideo-banner.png" width="200" height="200"></a></li>-->
-
-
-              </ul>
-          </nav>
-          <!-- End Sidebar navigation -->
-      <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; height: 519px; right: 3px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 518px;"></div></div></div>
-      <!-- End Sidebar scroll-->
-  </aside>
-  <!-- end Left Sidebar - style you can find in sidebar.scss  -->
-  ?&gt;
-
-  <!-- ============================================================== -->
-  <!-- End Left Sidebar - style you can find in sidebar.scss  -->
-  <!-- ============================================================== -->
-  <!-- ============================================================== -->
-  <!-- Page wrapper  -->
-  <!-- ============================================================== -->
-  <div class="page-wrapper" style="display: block;">
-      <!-- ============================================================== -->
-      <!-- Bread crumb and right sidebar toggle -->
-      <!-- ============================================================== -->
-      <div class="page-breadcrumb">
-          <div class="row">
-              <div class="col-7 align-self-center">
-               <!--   <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Welcome afzal9000i🎉</h3> -->
-                  <div class="d-flex align-items-center">
-                      <nav aria-label="breadcrumb">
-                          <ol class="breadcrumb m-0 p-0">
-                              <li class="breadcrumb-item">
-                              </li>
-                          </ol>
-                      </nav>
-                  </div>
-              </div>
-
-          </div>
-      </div>
-
-      <div>
-
-
-
-
-      </div>
-
-
-      <!-- ============================================================== -->
-      <!-- End Bread crumb and right sidebar toggle -->
-      <!-- ============================================================== -->
-      <!-- ============================================================== -->
-      <!-- Container fluid  -->
-      <!-- ============================================================== -->
-      <div class="container-fluid">
-          <!-- *************************************************************** -->
-          <!-- Start First Cards -->
-          <!-- *************************************************************** -->
-                      <div class="am-body-content">
-              <div class="am-body-content-top">
-
-
-              </div>
-              <div class="am-body-content-content">
-                  <!-- content starts here -->
-                  <div class="am-content-page"><p style="text-align: center;"><span style="font-size:48px;"><strong>Quillbot Extension Access&nbsp;</strong></span></p>
-
-<hr>
-<div class="am-content-page"></div>
-<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet" type="text/css"><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<center>
-<p><span><button class="button" id="accessButton1" onclick="redirectToURL1()" style="display: inline-block;">Quillbot Access 1</button></span></p>
-
-<p><span><button class="button" id="accessButton2" onclick="redirectToURL2()" style="display: inline-block;">Quillbot Access 2</button></span></p>
-
-<p class="hidden error-message" id="statusMessage" style="display: none;"></p>
-
-<p id="p1" style="display:none"></p>
-</center>
-
-<center>
-<div style="background:#eeeeee;border:1px solid #cccccc;padding:5px 10px;"><span style="font-size:26px;"><a href="https://app.toolzbuy.com/content/f/id/23">Click here to download the new extension</a>.</span></div>
-
-<p><br>
-<br>
-<br>
-&nbsp;</p>
-
-<hr>
-<p><br>
-<br>
-<span style="color:#e74c3c;">Disclaimer&nbsp;</span>:&nbsp; All rights reserved to their respective owners. We are here to assist freelancers, designers, and small businesses in utilizing expensive tools at an affordable price.</p>
-</center>
-<style type="text/css">.button {
-      display: inline-block;
-      padding: 10px 20px;
-      font-size: 20px;
-      font-family: Tahoma, Arial, sans-serif;
-      cursor: pointer;
-      font-weight: bold;
-      text-align: center;
-      text-decoration: none;
-      outline: none;
-      color: black;
-      background-color: #00ffa6;
-      border: none;
-      border-radius: 4px;
-      box-shadow: 0 9px #e6e8e7;
-      margin: 5px 0;
-      width: 300px;
-  }
-  .button:hover {
-      background-color: #13ff7d;
-      color: white;
-  }
-  .button:active {
-      color: white;
-      background-color: #13ff7d;
-      box-shadow: 0 5px #666;
-      transform: translateY(4px);
-  }
-  .error-message {
-      color: #e74c3c;
-      font-weight: bold;
-      font-size: 20px;
-      text-align: center;
-  }
-</style>
-<script>
-  const LATEST_VERSION = '3.0.1';
-  async function checkExtension() {
-      const latestVersion = LATEST_VERSION; // Use the hardcoded version
-      const installedVersion = document.body.dataset.extensionVersion;
-      const button1 = document.getElementById('accessButton1');
-      const button2 = document.getElementById('accessButton2');
-      const message = document.getElementById('statusMessage');
-      if (installedVersion) {
-          if (latestVersion.trim() === installedVersion.trim()) {
-              button1.style.display = 'inline-block';
-              button2.style.display = 'inline-block';
-              message.style.display = 'none';
-          } else {
-              button1.style.display = 'none';
-              button2.style.display = 'none';
-              message.innerHTML = 'We updated a new version of the extension, so please install it and use.';
-              message.style.display = 'block';
-          }
-      } else {
-          button1.style.display = 'none';
-          button2.style.display = 'none';
-          message.innerHTML = 'We have added a new extension for Quillbot, so please install the extension to access this tool. Please follow the guide below to install our extension.';
-          message.style.display = 'block';
-      }
-  }
-  window.onload = function() {
-      setTimeout(checkExtension, 0);
-  };
-  function redirectToURL1() {
-      window.open("https://quillbot.com/", "_blank");
-  }
-  function redirectToURL2() {
-      window.open("https://quillbot.com/paraphrasing-tool", "_blank");
-  }
-</script></div>                </div>
-          </div>
-          <div id="am-flash" class="am-flash">
-              <div class="am-flash-mask"></div>
-              <div class="am-flash-content"></div>
-          </div><br><br>
-          <!-- *************************************************************** -->
-          <!-- End Top Affilate  marketers -->
-          <!-- *************************************************************** -->
-      </div>
-      <!-- ============================================================== -->
-      <!-- End Container fluid  -->
-      <!-- ============================================================== -->
-      <!-- footer -->
-      <!-- ============================================================== -->
-      <footer class="footer text-center text-muted">
-          Made with ❤️ by <a href="https://toolzbuy.com">ToolzBuy</a>
-      </footer>
-      <!-- ============================================================== -->
-      <!-- End footer -->
-      <!-- ============================================================== -->
-  </div>
-  <!-- ============================================================== -->
-  <!-- End Page wrapper  -->
-  <!-- ============================================================== -->
-</div>
-<!-- ============================================================== -->
-<!-- End Wrapper -->
-<!-- ============================================================== -->
-<!-- End Wrapper -->
-<!-- ============================================================== -->
-<!-- All Jquery -->
-<!-- ============================================================== -->
-<script src="/application/default/themes/toolzbuy/public/js/popper.min.js"></script>
-<script src="/application/default/themes/toolzbuy/public/js/bootstrap.member.min.js"></script>
-<!-- apps -->
-<!-- apps -->
-<script src="/application/default/themes/toolzbuy/public/js/app-style-switcher.js"></script>
-<script src="/application/default/themes/toolzbuy/public/js/feather.min.js"></script>
-<script src="/application/default/themes/toolzbuy/public/js/perfect-scrollbar.jquery.min.js"></script>
-<script src="/application/default/themes/toolzbuy/public/js/sidebarmenu.js"></script>
-<!--Custom JavaScript -->
-<script src="/application/default/themes/toolzbuy/public/js/custom.min.js"></script>
-<!--This page JavaScript -->
-<script src="/application/default/themes/toolzbuy/public/js/d3.min.js"></script>
-<script src="/application/default/themes/toolzbuy/public/js/c3.min.js"></script>
-<script src="/application/default/themes/toolzbuy/public/js/chartist.min.js"></script>
-<script src="/application/default/themes/toolzbuy/public/js/chartist-plugin-tooltip.min.js"></script>
-<script src="/application/default/themes/toolzbuy/public/js/jquery-jvectormap-2.0.2.min.js"></script>
-<script src="/application/default/themes/toolzbuy/public/js/jquery-jvectormap-world-mill-en.js"></script>
-<script src="/application/default/themes/toolzbuy/public/js/dashboard1.min.js"></script>
-
-
-
-<script>
-  !function (t, e, c, n) {
-      var s = e.createElement(c);
-      s.async = 1, s.src = 'https://scripts.claspo.io/scripts/' + n + '.js';
-      var r = e.scripts[0];
-      r.parentNode.insertBefore(s, r);
-      var f = function () {
-          f.c(arguments);
-      };
-      f.q = [];
-      f.c = function () {
-          f.q.push(arguments);
-      };
-      t['claspo'] = t['claspo'] || f;
-  }(window, document, 'script', '3B2918DE80014190B18DC19BC29A5975');
-</script><script>claspo('init');</script>
-
-
-
-
-<script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;83674c63f7a4452ea5687189b904555b&quot;,&quot;r&quot;:1,&quot;server_timing&quot;:{&quot;name&quot;:{&quot;cfCacheStatus&quot;:true,&quot;cfEdge&quot;:true,&quot;cfExtPri&quot;:true,&quot;cfL4&quot;:true,&quot;cfOrigin&quot;:true,&quot;cfSpeedBrain&quot;:true},&quot;location_startswith&quot;:null}}" crossorigin="anonymous"></script>
-
-
-
-<div class="jvectormap-tip"></div></body></html>
+        var location = window.location.href;
+        var now = Date.now();
+        if (
+          ["grammarly.com/ddocs/", "grammarly.com/docs/"].some((s) =>
+            location.includes(s)
+          )
+        ) {
+          window.Grammarly.denali.metrics = {
+            time: now,
+            page: "editor",
+            source: "url",
+          };
+        }
+        if (location === "https://app.grammarly.com/") {
+          window.Grammarly.denali.metrics = {
+            time: now,
+            page: "docList",
+            source: "na",
+          };
+        }
+      })();
+    </script>
+    <script
+      data-verified="true"
+      type="module"
+      crossorigin="anonymous"
+      async=""
+      defer=""
+      src="https://denali-static.grammarly.com/js/1c46e2bf09091d392fa8/runtime.js?env=prod"
+    ></script>
+    <script
+      data-verified="true"
+      type="module"
+      crossorigin="anonymous"
+      async=""
+      defer=""
+      src="https://denali-static.grammarly.com/js/65f4dc7f8d2190a24e34/vendor-rx.js?env=prod"
+    ></script>
+    <script
+      data-verified="true"
+      type="module"
+      crossorigin="anonymous"
+      async=""
+      defer=""
+      src="https://denali-static.grammarly.com/js/ca2db6abb8c5403b455d/vendor-react.js?env=prod"
+    ></script>
+    <script
+      data-verified="true"
+      type="module"
+      crossorigin="anonymous"
+      async=""
+      defer=""
+      src="https://denali-static.grammarly.com/js/cd9a0d0252a9b6262203/vendor-i~e~ae~ci~cb~as~mga~ea~aea~nda.js?env=prod"
+    ></script>
+    <script
+      data-verified="true"
+      type="module"
+      crossorigin="anonymous"
+      async=""
+      defer=""
+      src="https://denali-static.grammarly.com/js/835728899030a169ca89/vendor-i~nd~e~ae~nf~dt~ci~cb~as.js?env=prod"
+    ></script>
+    <script
+      data-verified="true"
+      type="module"
+      crossorigin="anonymous"
+      async=""
+      defer=""
+      src="https://denali-static.grammarly.com/js/8c05c7446b8bee92a059/vendor-i~e~ae~cb~as~mga~ea~aea~nda.js?env=prod"
+    ></script>
+    <script
+      data-verified="true"
+      type="module"
+      crossorigin="anonymous"
+      async=""
+      defer=""
+      src="https://denali-static.grammarly.com/js/657cbc21ef4834b65a2a/vendor-i~nd~e~ae~dt~ci~cb~as.js?env=prod"
+    ></script>
+    <script
+      data-verified="true"
+      type="module"
+      crossorigin="anonymous"
+      async=""
+      defer=""
+      src="https://denali-static.grammarly.com/js/c0b8cfd941c22c1b173a/vendor-i~e~ae~cb~as~mga~ea~nda.js?env=prod"
+    ></script>
+    <script
+      data-verified="true"
+      type="module"
+      crossorigin="anonymous"
+      async=""
+      defer=""
+      src="https://denali-static.grammarly.com/js/c1034c37a9e824002481/vendor-i~nd~e~ae~ci~cb~as.js?env=prod"
+    ></script>
+    <script
+      data-verified="true"
+      type="module"
+      crossorigin="anonymous"
+      async=""
+      defer=""
+      src="https://denali-static.grammarly.com/js/a507cef2a8da4eb1a48f/vendor-i~nd~e~ae~dt~cb~as.js?env=prod"
+    ></script>
+    <script
+      data-verified="true"
+      type="module"
+      crossorigin="anonymous"
+      async=""
+      defer=""
+      src="https://denali-static.grammarly.com/js/3c59af15dbfa450e5b3c/vendor-i~e~ae~as~mga~ea~nda.js?env=prod"
+    ></script>
+    <script
+      data-verified="true"
+      type="module"
+      crossorigin="anonymous"
+      async=""
+      defer=""
+      src="https://denali-static.grammarly.com/js/25f0ff5aaf4c99410ca1/vendor-i~e~ae~nf~ci~cb~as.js?env=prod"
+    ></script>
+    <script
+      data-verified="true"
+      type="module"
+      crossorigin="anonymous"
+      async=""
+      defer=""
+      src="https://denali-static.grammarly.com/js/80d20ee2425d58369167/vendor-i~e~ae~ci~cb~as.js?env=prod"
+    ></script>
+    <script
+      data-verified="true"
+      type="module"
+      crossorigin="anonymous"
+      async=""
+      defer=""
+      src="https://denali-static.grammarly.com/js/bf7d803ced77abfb6b82/vendor-i~nd~e~ae~cb~as.js?env=prod"
+    ></script>
+    <script
+      data-verified="true"
+      type="module"
+      crossorigin="anonymous"
+      async=""
+      defer=""
+      src="https://denali-static.grammarly.com/js/e3fd6dcdf703d158f089/vendor-i~cb~mga~ea~aea~nda.js?env=prod"
+    ></script>
+    <script
+      data-verified="true"
+      type="module"
+      crossorigin="anonymous"
+      async=""
+      defer=""
+      src="https://denali-static.grammarly.com/js/dbe30d16eacdb36e5369/vendor-i~e~cb~mga~ea~nda.js?env=prod"
+    ></script>
+    <script
+      data-verified="true"
+      type="module"
+      crossorigin="anonymous"
+      async=""
+      defer=""
+      src="https://denali-static.grammarly.com/js/58a46fafcc9babab19cf/vendor-i~e~ae~cb~as.js?env=prod"
+    ></script>
+    <script
+      data-verified="true"
+      type="module"
+      crossorigin="anonymous"
+      async=""
+      defer=""
+      src="https://denali-static.grammarly.com/js/efcc4485d8e27d64ddea/vendor-i~e~mga~ea~nda.js?env=prod"
+    ></script>
+    <script
+      data-verified="true"
+      type="module"
+      crossorigin="anonymous"
+      async=""
+      defer=""
+      src="https://denali-static.grammarly.com/js/3b668d35e9424fd4c59f/vendor-i~nd~e~dt~cb.js?env=prod"
+    ></script>
+    <script
+      data-verified="true"
+      type="module"
+      crossorigin="anonymous"
+      async=""
+      defer=""
+      src="https://denali-static.grammarly.com/js/358ae857879f4e01bdd9/vendor-i~mga~ea~nda.js?env=prod"
+    ></script>
+    <script
+      data-verified="true"
+      type="module"
+      crossorigin="anonymous"
+      async=""
+      defer=""
+      src="https://denali-static.grammarly.com/js/08b9ff23509b389bfc3f/vendor-i~e~ae~as.js?env=prod"
+    ></script>
+    <script
+      data-verified="true"
+      type="module"
+      crossorigin="anonymous"
+      async=""
+      defer=""
+      src="https://denali-static.grammarly.com/js/672a897913a5ca8b21f1/vendor-i~nd~e.js?env=prod"
+    ></script>
+    <script
+      data-verified="true"
+      type="module"
+      crossorigin="anonymous"
+      async=""
+      defer=""
+      src="https://denali-static.grammarly.com/js/43eac985fc6f829aabaf/vendor-i~cb~cs.js?env=prod"
+    ></script>
+    <script
+      data-verified="true"
+      type="module"
+      crossorigin="anonymous"
+      async=""
+      defer=""
+      src="https://denali-static.grammarly.com/js/b741cd59fb8d54665ef6/vendor-i~sm.js?env=prod"
+    ></script>
+    <script
+      data-verified="true"
+      type="module"
+      crossorigin="anonymous"
+      async=""
+      defer=""
+      src="https://denali-static.grammarly.com/js/6d7cf69f8394201661f1/vendor-i~dm.js?env=prod"
+    ></script>
+    <script
+      data-verified="true"
+      type="module"
+      crossorigin="anonymous"
+      async=""
+      defer=""
+      src="https://denali-static.grammarly.com/js/952447924c3640d340b4/vendor-i.js?env=prod"
+    ></script>
+    <script
+      data-verified="true"
+      type="module"
+      crossorigin="anonymous"
+      async=""
+      defer=""
+      src="https://denali-static.grammarly.com/js/eff7b8da5f800ec2e882/stylesv26.js?env=prod"
+    ></script>
+    <script
+      data-verified="true"
+      type="module"
+      crossorigin="anonymous"
+      async=""
+      defer=""
+      src="https://denali-static.grammarly.com/js/8fb870938a5e9ce8636a/default-i~nd~e~ae~nf~dt~ci~cb~as.js?env=prod"
+    ></script>
+    <script
+      data-verified="true"
+      type="module"
+      crossorigin="anonymous"
+      async=""
+      defer=""
+      src="https://denali-static.grammarly.com/js/b0206c44ee1897daffcb/default-i~e~ae~cb~as~mga~ea~aea~nda.js?env=prod"
+    ></script>
+    <script
+      data-verified="true"
+      type="module"
+      crossorigin="anonymous"
+      async=""
+      defer=""
+      src="https://denali-static.grammarly.com/js/84b247b4239bc3c21d35/default-i~nd~e~ae~cb~as.js?env=prod"
+    ></script>
+    <script
+      data-verified="true"
+      type="module"
+      crossorigin="anonymous"
+      async=""
+      defer=""
+      src="https://denali-static.grammarly.com/js/bbdf702a7b976d2396c9/default-i~cb.js?env=prod"
+    ></script>
+    <script
+      data-verified="true"
+      type="module"
+      crossorigin="anonymous"
+      async=""
+      defer=""
+      src="https://denali-static.grammarly.com/js/eafd64a73fb1ee1d9de5/default-i.js?env=prod"
+    ></script>
+    <script
+      data-verified="true"
+      type="module"
+      crossorigin="anonymous"
+      async=""
+      defer=""
+      src="https://denali-static.grammarly.com/js/83c102074d222f822780/index.js?env=prod"
+    ></script>
+  </body>
+</html>

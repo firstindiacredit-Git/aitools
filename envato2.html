@@ -467,8 +467,7 @@ function amUrl(u, return_path) {
                     <div class="d-flex align-items-center">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb m-0 p-0">
-                                <li class="breadcrumb-item">
-                                </li>
+                                
                             </ol>
                         </nav>
                     </div>
@@ -546,6 +545,39 @@ function amUrl(u, return_path) {
       gap: 10px;
       flex-wrap: wrap;
     }
+    .preview-banner {
+      max-width: 720px;
+      margin: 10px auto 0;
+      padding: 0;
+    }
+    .preview-frame {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.18);
+      height: 360px;
+      background: #ffffff;
+    }
+    .preview-frame img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: auto;
+      transform: translateY(0);
+      will-change: transform;
+    }
+    .preview-frame:hover img {
+      animation: bannerScroll 9s linear forwards;
+    }
+    @keyframes bannerScroll {
+      0% {
+        transform: translateY(0);
+      }
+      100% {
+        transform: translateY(-100%);
+      }
+    }
     .title {
       text-align: center;
       font-family: Oswald, Tahoma, Arial, sans-serif;
@@ -560,6 +592,12 @@ function amUrl(u, return_path) {
 
 <hr />
 <div class="button-group"><button class="button" onclick="openAccess('https://en.accesstool.in/')">Envato Elements Access</button></div>
+<hr />
+<div class="preview-banner">
+  <div class="preview-frame">
+    <img src="public/elements.envato.png" alt="Envato Elements preview" loading="lazy" />
+  </div>
+</div>
 
 <div class="error-message" id="error">Missing <code>fp_token</code> cookie. Please log in and try again.</div>
 <script>

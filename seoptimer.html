@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Seoptimer</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<script type="text/javascript" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- userLayoutHead() start -->
+
+
+<meta name="generator" content="aMember Pro" >
+<meta name="robots" content="noindex" >
+<link href="https://use.fontawesome.com/releases/v6.5.1/css/all.css" media="screen" rel="stylesheet" crossorigin="anonymous" >
+<link href="/application/default/themes/toolzbuy/public/css/reset.css?2651346969" rel="stylesheet" >
+<link href="/application/default/themes/toolzbuy/public/css/amember.css?2651346969" rel="stylesheet" >
+<link href="/application/default/themes/toolzbuy/public/css/site.css?2815654277" rel="stylesheet" >
+<link href="/application/default/views/public/js/jquery/jquery.ui.css?2651346969" rel="stylesheet" >
+
+
+
+
+
+
+
+
+<script type="text/am-vars">{"public-path":"\/","api-url":"\/","datepickerDefaults":{"closeText":"Done","prevText":"Prev","nextText":"Next","currentText":"Today","monthNames":["January","February","March","April","May","June","July","August","September","October","November","December"],"monthNamesShort":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]},"langCount":1,"msg_select_state":"[Select state]"}</script>
+
+<script type="text/javascript">
+    //<!--
+    window.uiDateFormat = "d M yy";
+window.uiWeekFirstDay = "0";
+window.momentDateFormat = "D MMM YYYY";
+window.uiDefaultDate = new Date(2025,10,18);
+    //-->
+</script>
+<script type="text/javascript" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="/application/default/views/public/js/vendors-admin-user.js?2651346969"></script>
+<script type="text/javascript" src="/application/default/views/public/js/vendors-user.js?2651346969"></script>
+<script type="text/javascript" src="/application/default/views/public/js/user.js?2651346969"></script>
+<script type="text/javascript">
+    //<!--
+    am_i18n = {"toggle_password_visibility":"Toggle Password Visibility","password_strength":"Password Strength","upload_browse":"browse","upload_upload":"upload","upload_files":"Uploaded Files","upload_uploading":"Uploading...","upload_remove_file":"remove file","ms_please_select":"-- Please Select --","ms_select_all":"Select All","please_wait":"Please Wait...","popup_close":"Close","file_style_browse":"Browse\u2026"};    //-->
+</script>
+<script type="text/javascript">
+    //<!--
+    window.rootUrl = ""; //kept for compatibilty only! use amUrl() instead
+function amUrl(u, return_path) {
+    var ret = "" + u;
+    return (return_path || 0) ? [ret, []] : ret;
+};    //-->
+</script>
+
+
+<!-- userLayoutHead() finish -->
+    <!-- Custom CSS -->
+    <link href="/application/default/themes/toolzbuy/public/css/c3.min.css" rel="stylesheet">
+    <link href="/application/default/themes/toolzbuy/public/css/noobjoker.css" rel="stylesheet">
+    <link href="/application/default/themes/toolzbuy/public/css/chartist.min.css" rel="stylesheet">
+    <link href="/application/default/themes/toolzbuy/public/css/jquery-jvectormap-2.0.2.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link href="/application/default/themes/toolzbuy/public/css/style.member.min.css" rel="stylesheet">
+
+<!-- Pixel Code for https://my.popify.site/ -->
+<script async src="https://my.popify.site/pixel/qyo13n0c3tie6d9nb1uads7ota8gpgeg"></script>
+<!-- END Pixel Code -->
+
+
+
+<!-- Add this right before the closing </head> tag in your layout.phtml file -->
+<style>
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+</style>
+</head>
+
+<body>
+
+
+
+
+<!-- ============================================================== -->
+<!-- Preloader - style you can find in spinners.css -->
+<!-- ============================================================== -->
+<div class="preloader">
+    <div class="lds-ripple">
+        <div class="lds-pos"></div>
+        <div class="lds-pos"></div>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- Main wrapper - style you can find in pages.scss -->
+<!-- ============================================================== -->
+<div id="main-wrapper" data-theme="light" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+     data-sidebar-position="fixed" data-header-position="fixed" data-boxed-layout="full">
+    <!-- ============================================================== -->
+    <!-- Topbar header - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    
+    <div class="page-wrapper">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+     
+
+        <div>
+
+
+
+
+        </div>
+
+
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Container fluid  -->
+        <!-- ============================================================== -->
+        <div class="container-fluid">
+            <!-- *************************************************************** -->
+            <!-- Start First Cards -->
+            <!-- *************************************************************** -->
+                        <div class="am-body-content">
+                <div class="am-body-content-top">
+
+
+                </div>
+                <div class="am-body-content-content">
+                    <!-- content starts here -->
+                    <div class="am-content-page"><!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Tool Access Page</title>
+	<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet" type="text/css" /><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<style type="text/css">p.dashed {
+            max-width: 600px;
+            line-height: 50px;
+            margin-top: 50px;
+            border-style: dashed;
+            border-width: 1px;
+        }
+
+        .am-common h1 {
+            text-align: center;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 19px;
+            font-family: Tahoma, Arial, sans-serif;
+            cursor: pointer;
+            font-weight: Bold;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: black;
+            background-color: #00ffa6;
+            border: none;
+            border-radius: 4px;
+            box-shadow: 0 9px #e6e8e7;
+        }
+
+        .button:hover {
+            background-color: #13ff7d;
+            color: white;
+        }
+
+        .button:active {
+            color: white;
+            background-color: #13ff7d;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
+
+        .error-message {
+            display: none;
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .credential-box {
+            display: none;
+            max-width: 420px;
+            margin: 25px auto 0;
+            padding: 20px;
+            border: 2px dashed #13ff7d;
+            border-radius: 8px;
+            font-size: 18px;
+            background: #f9fffc;
+            line-height: 1.6;
+        }
+
+        .credential-box span {
+            font-weight: bold;
+            color: #0b7f5b;
+        }
+
+        .button-row {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 25px auto 0;
+        }
+
+        .button-row .button {
+            min-width: 220px;
+        }
+
+        .preview-banner {
+            max-width: 720px;
+            margin: 35px auto 0;
+            padding: 0;
+        }
+
+        .preview-frame {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.18);
+            height: 360px;
+            background: #ffffff;
+        }
+
+        .preview-frame img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            transform: translateY(0);
+            will-change: transform;
+        }
+
+        .preview-frame:hover img {
+            animation: seoptimerScroll 10s linear forwards;
+        }
+
+        @keyframes seoptimerScroll {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-100%);
+            }
+        }
+	</style>
+</head>
+<body><!-- Remove the data-extension-version attribute for the initial check -->
+<p style="text-align: center;"><span style="color:null;"><strong><span style="font-size:48px;">Seoptimer Access</span></strong></span></p>
+
+<hr />
+<div class="am-content-page"></div>
+
+<center>
+<p id="p1" style="display:none"></p>
+<textarea data-url="https://www.seoptimer.com/dashboard" hidden="false" id="chat1" spellcheck="false"></textarea>
+
+<div class="button-row">
+    <button class="button user_clickedd" onclick="window.open('https://www.seoptimer.com/dashboard', '_blank')" target="_blank" data-textarea="chat1" id="accessButton">Click To Access This Tool</button>
+     <button class="button user_clickedd" onclick="window.open('https://www.seoptimer.com/dashboard', '_blank')" target="_blank" data-textarea="chat1" id="accessButton">Click To Access This Tool</button>
+    <button class="button user_clickedd" type="button" id="credentialButton" onclick="showCredentials()">Show Login Details</button>
+</div>
+
+<div id="credentialBox" class="credential-box">
+    <div>Email: <span>ganispecial@50mail.com</span></div>
+    <div>Password: <span>suraj@0987</span></div>
+</div>
+
+<div class="preview-banner">
+    <div class="preview-frame">
+        <img src="/public/seooptimizer.png" alt="SEOptimer Dashboard Preview" loading="lazy">
+    </div>
+</div>
+
+</center>
+
+<center>
+<p style="font-style: italic;"></p>
+
+
+<p style="font-style: italic;"></p>
+
+<hr />
+
+
+
+<br />
+<br />
+<span style="color:#e74c3c;">Disclaimer&nbsp;</span>:&nbsp; All rights reserved to their respective owners. We are here to assist freelancers, designers, and small businesses in utilizing expensive tools at an affordable price.</p>
+</center>
+<script>
+function showCredentials() {
+    const box = document.getElementById('credentialBox');
+    if (!box) {
+        return;
+    }
+    box.style.display = box.style.display === 'none' || box.style.display === '' ? 'block' : 'none';
+}
+
+fetch('https://accessnewext.toolzbuy.com/seoptimer.json')
+    .then(response => response.text())
+    .then(data => {
+        const pElement = document.getElementById('chat1');
+        pElement.textContent = data;
+    })
+    .catch(error => {
+        console.error('An error occurred while fetching the content:', error);
+    });
+
+function checkExtension(requiredVersion) {
+    const installedVersion = document.body.getAttribute('data-extension-version'); // Get the installed version from the data attribute
+    const button = document.getElementById('accessButton');
+    const message = document.getElementById('statusMessage');
+
+    console.log('Installed version:', installedVersion);
+    console.log('Required version:', requiredVersion);
+
+    if (installedVersion) {
+        if (installedVersion.trim() === requiredVersion) {
+            button.style.display = 'inline-block';
+            message.style.display = 'none';
+        } else {
+            button.style.display = 'none';
+            message.innerHTML = 'You installed an old version of the extension. To use our tools, please remove the old extension and reinstall the new one.';
+            message.style.display = 'block';
+        }
+    } else {
+        button.style.display = 'none';
+        message.innerHTML = 'We have changed our extension, so please install our latest extension to access our tools.';
+        message.style.display = 'block';
+    }
+}
+
+window.onload = function() {
+    console.log('Attempting to fetch version from URL');
+    fetch('https://seoshope.com/versiontoolzbuy.php')
+        .then(response => {
+            console.log('Fetching version from URL:', response);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+        .then(requiredVersion => {
+            console.log('Fetched required version:', requiredVersion);
+            checkExtension(requiredVersion.trim());
+        })
+        .catch(error => {
+            console.error('An error occurred while fetching the version:', error);
+            const message = document.getElementById('statusMessage');
+            message.innerHTML = 'Could not fetch the extension version. Please try again later.';
+            message.style.display = 'block';
+        });
+};
+</script><type4-ext style="display: none; position: absolute; top: 178.299px; left: 1058.23px;"></type4-ext><type4-ext style="display: none;"></type4-ext><type4-ext style="display: none; position: absolute; top: 178.299px; left: 1058.23px;"></type4-ext><type4-ext style="display: none;"></type4-ext><type4-ext style="display: none;"></type4-ext><type4-ext style="display: none;"></type4-ext><type4-ext style="display: none;"></type4-ext><type4-ext style="display: none; position: absolute; top: 578.299px; left: 1361.19px;"></type4-ext><type4-ext style="display: none;"></type4-ext><type4-ext style="display: none; position: absolute; top: 178.299px; left: 1058.23px;"></type4-ext><type4-ext style="display: none;"></type4-ext><type4-ext style="display: none; position: absolute; top: 178.299px; left: 1058.23px;"></type4-ext><type4-ext style="display: none;"></type4-ext><type4-ext style="display: none;"></type4-ext><type4-ext style="display: none; position: absolute; top: 178.299px; left: 1058.23px;"></type4-ext><type4-ext style="display: none;"></type4-ext><type4-ext style="display: none;"></type4-ext><type4-ext style="display: none; position: absolute; top: 178.299px; left: 1058.23px;"></type4-ext><type4-ext style="display: none; position: absolute; top: 178.299px; left: 1058.23px;"></type4-ext><type4-ext style="display: none;"></type4-ext><type4-ext style="display: none;"></type4-ext><type4-ext style="display: none; position: absolute; top: 178.299px; left: 1058.23px;"></type4-ext><type4-ext style="display: none;"></type4-ext><type4-ext style="display: none;"></type4-ext><type4-ext style="display: none; position: absolute; top: 178.299px; left: 1058.23px;"></type4-ext><type4-ext style="display: none;"></type4-ext><type4-ext style="display: none; position: absolute; top: 178.299px; left: 1058.23px;"></type4-ext><type4-ext style="display: none;"></type4-ext><script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"83674c63f7a4452ea5687189b904555b","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html></div>                </div>
+            </div>
+            <div id="am-flash" class="am-flash">
+                <div class="am-flash-mask"></div>
+                <div class="am-flash-content"></div>
+            </div><br><br>
+            <!-- *************************************************************** -->
+            <!-- End Top Affilate  marketers -->
+            <!-- *************************************************************** -->
+        </div>
+       
+    </div>
+  
+</div>
+<!-- ============================================================== -->
+<!-- End Wrapper -->
+<!-- ============================================================== -->
+<!-- End Wrapper -->
+<!-- ============================================================== -->
+<!-- All Jquery -->
+<!-- ============================================================== -->
+<script src="/application/default/themes/toolzbuy/public/js/popper.min.js"></script>
+<script src="/application/default/themes/toolzbuy/public/js/bootstrap.member.min.js"></script>
+<!-- apps -->
+<!-- apps -->
+<script src="/application/default/themes/toolzbuy/public/js/app-style-switcher.js"></script>
+<script src="/application/default/themes/toolzbuy/public/js/feather.min.js"></script>
+<script src="/application/default/themes/toolzbuy/public/js/perfect-scrollbar.jquery.min.js"></script>
+<script src="/application/default/themes/toolzbuy/public/js/sidebarmenu.js"></script>
+<!--Custom JavaScript -->
+<script src="/application/default/themes/toolzbuy/public/js/custom.min.js"></script>
+<!--This page JavaScript -->
+<script src="/application/default/themes/toolzbuy/public/js/d3.min.js"></script>
+<script src="/application/default/themes/toolzbuy/public/js/c3.min.js"></script>
+<script src="/application/default/themes/toolzbuy/public/js/chartist.min.js"></script>
+<script src="/application/default/themes/toolzbuy/public/js/chartist-plugin-tooltip.min.js"></script>
+<script src="/application/default/themes/toolzbuy/public/js/jquery-jvectormap-2.0.2.min.js"></script>
+<script src="/application/default/themes/toolzbuy/public/js/jquery-jvectormap-world-mill-en.js"></script>
+<script src="/application/default/themes/toolzbuy/public/js/dashboard1.min.js"></script>
+
+
+
+<script>
+    !function (t, e, c, n) {
+        var s = e.createElement(c);
+        s.async = 1, s.src = 'https://scripts.claspo.io/scripts/' + n + '.js';
+        var r = e.scripts[0];
+        r.parentNode.insertBefore(s, r);
+        var f = function () {
+            f.c(arguments);
+        };
+        f.q = [];
+        f.c = function () {
+            f.q.push(arguments);
+        };
+        t['claspo'] = t['claspo'] || f;
+    }(window, document, 'script', '3B2918DE80014190B18DC19BC29A5975');
+</script><script>claspo('init');</script>
+
+
+
+
+</body>
+
+</html>

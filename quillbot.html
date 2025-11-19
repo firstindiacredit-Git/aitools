@@ -779,18 +779,14 @@
   </head>
 
   <body data-extension-version="3.0.1" cz-shortcut-listen="true">
-    <!-- ============================================================== -->
-    <!-- Preloader - style you can find in spinners.css -->
-    <!-- ============================================================== -->
+   
     <div class="preloader" style="display: none">
       <div class="lds-ripple">
         <div class="lds-pos"></div>
         <div class="lds-pos"></div>
       </div>
     </div>
-    <!-- ============================================================== -->
-    <!-- Main wrapper - style you can find in pages.scss -->
-    <!-- ============================================================== -->
+ 
     <div
       id="main-wrapper"
       data-theme="light"
@@ -801,426 +797,17 @@
       data-header-position="fixed"
       data-boxed-layout="full"
     >
-      <!-- ============================================================== -->
-      <!-- Topbar header - style you can find in pages.scss -->
-      <!-- ============================================================== -->
-      <header class="topbar" data-navbarbg="skin6">
-        <nav class="navbar top-navbar navbar-expand-md navbar-light">
-          <div class="navbar-header" data-logobg="skin6">
-            <!-- This is for the sidebar toggle which is visible on mobile only -->
-            <a
-              class="nav-toggler waves-effect waves-light d-block d-md-none"
-              href="javascript:void(0)"
-              ><i class="ti-menu ti-close"></i
-            ></a>
-            <!-- ============================================================== -->
-            <!-- Logo -->
-            <!-- ============================================================== -->
-            <!-- Replace the existing navbar-brand div with this code -->
-            <!-- Replace the entire navbar-brand div with this code -->
-            <div class="navbar-brand">
-              <a
-                href="/member"
-                style="
-                  text-decoration: none;
-                  display: flex;
-                  align-items: center;
-                  padding: 0;
-                "
-              >
-                <div
-                  style="
-                    display: flex;
-                    align-items: center;
-                    margin: 0;
-                    padding: 0;
-                  "
-                >
-                  <div
-                    style="
-                      width: 46px;
-                      height: 46px;
-                      background: #ff7052;
-                      border-radius: 10px;
-                      display: flex;
-                      align-items: center;
-                      justify-content: center;
-                      margin-right: 10px;
-                    "
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="white"
-                      stroke-width="1.5"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      style="
-                        width: 28px;
-                        height: 28px;
-                        animation: rotate 8s linear infinite;
-                      "
-                    >
-                      <circle cx="12" cy="12" r="10"></circle>
-                      <line x1="2" y1="12" x2="22" y2="12"></line>
-                      <path
-                        d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div
-                    style="font-size: 24px; font-weight: 700; color: #ff7052"
-                  >
-                    ToolzBuy
-                  </div>
-                </div>
-              </a>
-            </div>
-            <!-- ============================================================== -->
-            <!-- End Logo -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- Toggle which is visible on mobile only -->
-            <!-- ============================================================== -->
-            <a
-              class="topbartoggler d-block d-md-none waves-effect waves-light"
-              href="javascript:void(0)"
-              data-toggle="collapse"
-              data-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-              ><i class="ti-more"></i
-            ></a>
-          </div>
-          <!-- ============================================================== -->
-          <!-- End Logo -->
-          <!-- ============================================================== -->
-          <div class="navbar-collapse collapse" id="navbarSupportedContent">
-            <!-- ============================================================== -->
-            <!-- toggle and nav items -->
-            <!-- ============================================================== -->
-            <ul class="navbar-nav float-left mr-auto ml-3 pl-1">
-              <!-- Notification -->
-              <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle pl-md-3 position-relative"
-                  href="javascript:void(0)"
-                  id="bell"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <span></span>
-                </a>
-              </li>
-              <!-- End Notification -->
-              <!-- ============================================================== -->
-              <!-- create new -->
-              <!-- ============================================================== -->
-            </ul>
-            <!-- ============================================================== -->
-            <!-- Right side toggle and nav items -->
-            <!-- ============================================================== -->
-            <ul class="navbar-nav float-right">
-              <!-- ============================================================== -->
-              <!-- User profile and search -->
-              <!-- ============================================================== -->
-              <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="javascript:void(0)"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <img
-                    src="https://secure.gravatar.com/avatar/05a0475c85bf7d27ca0b709c51e2d5de94a6bd19ef8ae33306d1733ed35291f9?d=&amp;s=40"
-                    alt="avatar logo"
-                    class="rounded-circle"
-                    width="40"
-                  />
+   
+      
 
-                  <span class="ml-2 d-none d-lg-inline-block"
-                    ><span>Hello,</span>
-                    <span class="text-dark">afzal9000i</span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="feather feather-chevron-down svg-icon"
-                    >
-                      <polyline points="6 9 12 15 18 9"></polyline></svg
-                  ></span>
-                </a>
-                <div
-                  class="dropdown-menu dropdown-menu-right user-dd animated flipInY"
-                >
-                  <a class="dropdown-item" href="/profile"
-                    ><svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="feather feather-user svg-icon mr-2 ml-1"
-                    >
-                      <path
-                        d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"
-                      ></path>
-                      <circle cx="12" cy="7" r="4"></circle>
-                    </svg>
-                    My Profile</a
-                  >
+    
+        
 
-                  <!--
-
-                          <a class="dropdown-item" href="/profile"><i data-feather="settings"
-                                                                                              class="svg-icon mr-2 ml-1"></i>
-                              Account Setting</a>
-                              
-                              -->
-
-                  <!--
-                          <a class="dropdown-item" href="/helpdesk"><i               class="fas fa-ticket-alt mr-2 ml-1"></i>
-                              Support Tickets</a>
-
-                          <a class="dropdown-item" target="_blank" href="https://fb.me/mileseoo"><i style="size: 29px;" class="fab fa-facebook-messenger mr-2 ml-1"></i>
-                              Fb chat</a>
-                              
-                              -->
-
-                  <a class="dropdown-item" href="/logout"
-                    ><svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      class="feather feather-power svg-icon mr-2 ml-1"
-                    >
-                      <path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path>
-                      <line x1="12" y1="2" x2="12" y2="12"></line>
-                    </svg>
-                    Logout</a
-                  >
-                  <div class="dropdown-divider"></div>
-                </div>
-              </li>
-              <!-- ============================================================== -->
-              <!-- User profile and search -->
-              <!-- ============================================================== -->
-            </ul>
-          </div>
-        </nav>
-      </header>
-      <!-- ============================================================== -->
-      <!-- End Topbar header -->
-      <!-- ============================================================== -->
-      <!-- ============================================================== -->
-
-      <!-- Left Sidebar - style you can find in sidebar.scss  -->
-      <!-- ============================================================== -->
-      <aside class="left-sidebar" data-sidebarbg="skin6">
-        <!-- Sidebar scroll-->
-        <div
-          class="scroll-sidebar ps-container ps-theme-default ps-active-y"
-          data-sidebarbg="skin6"
-          data-ps-id="bf8b12df-3b45-b63a-3662-6dbab51d3bb1"
-        >
-          <!-- Sidebar navigation-->
-          <nav class="sidebar-nav">
-            <ul id="sidebarnav">
-              <li class="sidebar-item">
-                <a
-                  class="sidebar-link sidebar-link"
-                  href="/member"
-                  aria-expanded="false"
-                  ><svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="feather feather-home feather-icon"
-                  >
-                    <path
-                      d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
-                    ></path>
-                    <polyline points="9 22 9 12 15 12 15 22"></polyline></svg
-                  ><span class="hide-menu">Dashboard</span></a
-                >
-              </li>
-              <li class="list-divider"></li>
-
-              <!--               <li class="nav-small-cap"><span class="hide-menu">Profile</span></li> -->
-              <!--
-                  <li class="sidebar-item"> <a class="sidebar-link" href="/profile"
-                                               aria-expanded="false"><i class="fas fa-user"></i><span
-                                  class="hide-menu">Profile
-                              </span></a>
-                  </li>
-              
-              -->
-
-              <li class="sidebar-item">
-                <a
-                  class="sidebar-link sidebar-link"
-                  href="/member/payment-history"
-                  aria-expanded="false"
-                  ><i class="fab fa-cc-visa"></i
-                  ><span class="hide-menu">Payment history</span></a
-                >
-              </li>
-
-              <li class="sidebar-item">
-                <a
-                  class="sidebar-link sidebar-link"
-                  href="/page/order-renew"
-                  aria-expanded="false"
-                  ><i class="fas fa-cart-plus"></i
-                  ><span class="hide-menu">Order/Renew</span></a
-                >
-              </li>
-
-              <li class="sidebar-item">
-                <a
-                  class="sidebar-link sidebar-link"
-                  href="/page/affiliate"
-                  aria-expanded="false"
-                  ><i class="fas fa-dollar-sign"></i
-                  ><span class="hide-menu">Affilate</span></a
-                >
-              </li>
-
-              <li class="sidebar-item">
-                <a
-                  class="sidebar-link sidebar-link"
-                  href="/helpdesk"
-                  aria-expanded="false"
-                  ><i class="fas fa-ticket-alt"></i
-                  ><span class="hide-menu">Help Desk</span></a
-                >
-              </li>
-
-              <li class="sidebar-item">
-                <a
-                  class="sidebar-link sidebar-link"
-                  href="/page/faq"
-                  aria-expanded="false"
-                  ><i class="fas fa-question"></i
-                  ><span class="hide-menu">FAQs</span></a
-                >
-              </li>
-
-              <li class="list-divider"></li>
-              <li class="nav-small-cap">
-                <span class="hide-menu">DOWNLOAD OUR EXTENSION</span>
-              </li>
-              <li class="sidebar-item">
-                <a
-                  class="sidebar-link sidebar-link"
-                  href="/page/download-exe"
-                  aria-expanded="false"
-                  ><i class="fas fa-download"></i
-                  ><span class="hide-menu">Extension</span></a
-                >
-              </li>
-
-              <li class="list-divider"></li>
-              <li class="nav-small-cap"><span class="hide-menu"></span></li>
-              <!-- <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="https://t.me/seo_group_buy" target="_blank"
-                                               aria-expanded="false"><i class="fab fa-telegram"></i><span
-                                  class="hide-menu">Join Us on Telegram</span></a></li> -->
-
-              <!--<li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="https://app.toolzbuy.com/helpdesk" target="_blank"-->
-              <!--                             aria-expanded="false"><img src="https://toolzbuy.com/images/Invideo-banner.png" width="200" height="200"></a></li>-->
-            </ul>
-          </nav>
-          <!-- End Sidebar navigation -->
-          <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px">
-            <div
-              class="ps-scrollbar-x"
-              tabindex="0"
-              style="left: 0px; width: 0px"
-            ></div>
-          </div>
-          <div
-            class="ps-scrollbar-y-rail"
-            style="top: 0px; height: 519px; right: 3px"
-          >
-            <div
-              class="ps-scrollbar-y"
-              tabindex="0"
-              style="top: 0px; height: 518px"
-            ></div>
-          </div>
-        </div>
-        <!-- End Sidebar scroll-->
-      </aside>
-      <!-- end Left Sidebar - style you can find in sidebar.scss  -->
-      ?&gt;
-
-      <!-- ============================================================== -->
-      <!-- End Left Sidebar - style you can find in sidebar.scss  -->
-      <!-- ============================================================== -->
-      <!-- ============================================================== -->
-      <!-- Page wrapper  -->
-      <!-- ============================================================== -->
-      <div class="page-wrapper" style="display: block">
-        <!-- ============================================================== -->
-        <!-- Bread crumb and right sidebar toggle -->
-        <!-- ============================================================== -->
-        <div class="page-breadcrumb">
-          <div class="row">
-            <div class="col-7 align-self-center">
-              <!--   <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Welcome afzal9000i🎉</h3> -->
-              <div class="d-flex align-items-center">
-                <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb m-0 p-0">
-                    <li class="breadcrumb-item"></li>
-                  </ol>
-                </nav>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div></div>
-
-        <!-- ============================================================== -->
-        <!-- End Bread crumb and right sidebar toggle -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Container fluid  -->
-        <!-- ============================================================== -->
+      
         <div class="container-fluid">
-          <!-- *************************************************************** -->
-          <!-- Start First Cards -->
-          <!-- *************************************************************** -->
-          <div class="am-body-content">
-            <div class="am-body-content-top"></div>
-            <div class="am-body-content-content">
+        
+          
+           
               <!-- content starts here -->
               <div class="am-content-page">
                 <p style="text-align: center">
@@ -1398,18 +985,7 @@
                     </div>
                   </div>
 
-                  <div style="margin: 20px 0">
-                    <span style="font-size: 18px"
-                      >Or
-                      <a
-                        href="./public/Free-Extention.zip"
-                        style="color: #3498db"
-                        download="Free-Extention.zip"
-                        >click here</a
-                      >
-                      to download manually</span
-                    >
-                  </div>
+                
 
                   <p>
                     <br />
@@ -1810,7 +1386,7 @@
                       return;
                     }
                     window.open(
-                      "https://quillbot.com/paraphrasing-tool",
+                      "https://quillbot.com/",
                       "_blank"
                     );
                   }
@@ -1840,29 +1416,11 @@
           <!-- End Top Affilate  marketers -->
           <!-- *************************************************************** -->
         </div>
-        <!-- ============================================================== -->
-        <!-- End Container fluid  -->
-        <!-- ============================================================== -->
-        <!-- footer -->
-        <!-- ============================================================== -->
-        <footer class="footer text-center text-muted">
-          Made with ❤️ by <a href="https://toolzbuy.com">ToolzBuy</a>
-        </footer>
-        <!-- ============================================================== -->
-        <!-- End footer -->
-        <!-- ============================================================== -->
+       
       </div>
-      <!-- ============================================================== -->
-      <!-- End Page wrapper  -->
-      <!-- ============================================================== -->
+    
     </div>
-    <!-- ============================================================== -->
-    <!-- End Wrapper -->
-    <!-- ============================================================== -->
-    <!-- End Wrapper -->
-    <!-- ============================================================== -->
-    <!-- All Jquery -->
-    <!-- ============================================================== -->
+   
     <script src="/application/default/themes/toolzbuy/public/js/popper.min.js"></script>
     <script src="/application/default/themes/toolzbuy/public/js/bootstrap.member.min.js"></script>
     <!-- apps -->

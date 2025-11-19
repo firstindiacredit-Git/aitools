@@ -12,6 +12,12 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const MAIL_TM_API = process.env.MAIL_TM_API || "https://api.mail.tm";
+
+const domainCache = {
+  value: [],
+  fetchedAt: 0,
+};
 
 // Middleware
 app.use(cors());
@@ -449,6 +455,235 @@ Rewritten text (word changes only, same paragraphs):`,
   }
 });
 
+async function getTempMailDomains() {
+  const fifteenMinutes = 15 * 60 * 1000;
+  if (
+    domainCache.value.length &&
+    Date.now() - domainCache.fetchedAt < fifteenMinutes
+  ) {
+    return domainCache.value;
+  }
+
+  try {
+    const resp = await fetch(`${MAIL_TM_API}/domains?page=1`);
+    if (!resp.ok) {
+      console.error("Temp mail domain fetch failed", resp.status);
+      return [];
+    }
+    const data = await resp.json();
+    const domains = (data["hydra:member"] || [])
+      .map((item) => item.domain)
+      .filter(Boolean);
+    if (domains.length) {
+      domainCache.value = domains;
+      domainCache.fetchedAt = Date.now();
+    }
+    return domains;
+  } catch (error) {
+    console.error("Temp mail domain fetch error:", error);
+    return [];
+  }
+}
+
+async function createMailTmAccount() {
+  const domains = await getTempMailDomains();
+  if (!domains.length) {
+    throw new Error("No temp mail domains available");
+  }
+
+  const domain = domains[Math.floor(Math.random() * domains.length)];
+
+  for (let attempt = 0; attempt < 5; attempt += 1) {
+    const localPart = `user${Math.random().toString(36).slice(2, 10)}`;
+    const address = `${localPart}@${domain}`;
+    const password = `Temp${Math.random().toString(36).slice(2, 12)}!`;
+
+    const accountResp = await fetch(`${MAIL_TM_API}/accounts`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ address, password }),
+    });
+
+    if (accountResp.status === 409 || accountResp.status === 422) {
+      // Address collision, try another username
+      continue;
+    }
+
+    if (!accountResp.ok) {
+      const error = await accountResp.json().catch(() => ({}));
+      throw new Error(
+        error?.message || "Temp mail service refused account creation"
+      );
+    }
+
+    const tokenResp = await fetch(`${MAIL_TM_API}/token`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ address, password }),
+    });
+
+    if (!tokenResp.ok) {
+      const error = await tokenResp.json().catch(() => ({}));
+      throw new Error(
+        error?.message || "Unable to authenticate temp mail account"
+      );
+    }
+
+    const tokenData = await tokenResp.json();
+    return {
+      email: address,
+      password,
+      token: tokenData.token,
+      refreshToken: tokenData.refresh_token,
+      id: tokenData.id,
+      expiresAt: tokenData.expires_at,
+    };
+  }
+
+  throw new Error("Failed to allocate temp mail address after multiple attempts");
+}
+
+function getAuthToken(req) {
+  const header = req.headers.authorization || "";
+  const [, token] = header.split(" ");
+  return token || null;
+}
+
+async function proxyMailTm(pathSuffix, token, options = {}) {
+  const resp = await fetch(`${MAIL_TM_API}${pathSuffix}`, {
+    ...options,
+    headers: {
+      Authorization: `Bearer ${token}`,
+      ...(options.headers || {}),
+    },
+  });
+
+  const payload = await resp.json().catch(() => ({}));
+  if (!resp.ok) {
+    const error =
+      payload?.message || payload?.detail || "Temp mail service error";
+    const status = resp.status || 500;
+    const err = new Error(error);
+    err.status = status;
+    err.payload = payload;
+    throw err;
+  }
+
+  return payload;
+}
+
+app.post("/api/temp-mail/account", async (req, res) => {
+  try {
+    const account = await createMailTmAccount();
+    return res.json({
+      success: true,
+      account,
+    });
+  } catch (error) {
+    console.error("Temp mail account error:", error);
+    return res.status(500).json({
+      success: false,
+      error: error.message || "Unable to create temp mail account",
+    });
+  }
+});
+
+app.get("/api/temp-mail/messages", async (req, res) => {
+  const token = getAuthToken(req);
+  if (!token) {
+    return res.status(401).json({
+      success: false,
+      error: "Missing Authorization header",
+    });
+  }
+
+  try {
+    const data = await proxyMailTm("/messages?page=1", token);
+    const messages = (data["hydra:member"] || []).map((msg) => ({
+      id: msg.id,
+      from: msg.from,
+      to: msg.to,
+      subject: msg.subject,
+      intro: msg.intro,
+      seen: msg.seen,
+      createdAt: msg.createdAt,
+      attachments: msg.attachments,
+    }));
+    return res.json({ success: true, messages });
+  } catch (error) {
+    console.error("Temp mail list error:", error);
+    return res.status(error.status || 500).json({
+      success: false,
+      error: error.message || "Unable to fetch messages",
+      details: error.payload,
+    });
+  }
+});
+
+app.get("/api/temp-mail/messages/:id", async (req, res) => {
+  const token = getAuthToken(req);
+  if (!token) {
+    return res.status(401).json({
+      success: false,
+      error: "Missing Authorization header",
+    });
+  }
+
+  try {
+    const message = await proxyMailTm(`/messages/${req.params.id}`, token);
+    return res.json({ success: true, message });
+  } catch (error) {
+    console.error("Temp mail message error:", error);
+    return res.status(error.status || 500).json({
+      success: false,
+      error: error.message || "Unable to fetch message",
+      details: error.payload,
+    });
+  }
+});
+
+app.post("/api/temp-mail/send", async (req, res) => {
+  const token = getAuthToken(req);
+  if (!token) {
+    return res.status(401).json({
+      success: false,
+      error: "Missing Authorization header",
+    });
+  }
+
+  const { to, subject, text } = req.body || {};
+  if (!to || !text) {
+    return res.status(400).json({
+      success: false,
+      error: "Recipient and message body are required",
+    });
+  }
+
+  try {
+    const payload = await proxyMailTm(
+      "/messages",
+      token,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          to,
+          subject: subject || "",
+          text,
+        }),
+      }
+    );
+    return res.json({ success: true, message: payload });
+  } catch (error) {
+    console.error("Temp mail send error:", error);
+    return res.status(error.status || 500).json({
+      success: false,
+      error: error.message || "Unable to send message",
+      details: error.payload,
+    });
+  }
+});
+
 // Serve static files with correct MIME types (after API routes)
 app.use(
   express.static(__dirname, {
@@ -507,7 +742,6 @@ app.get("/ai-humanizer", (req, res) => {
   res.sendFile(path.join(__dirname, "aiconvert.html"));
 });
 
-
 app.get("/canva", (req, res) => {
   res.sendFile(path.join(__dirname, "canva.html"));
 });
@@ -531,9 +765,17 @@ app.get("/analytics/overview", (req, res) => {
   res.sendFile(path.join(__dirname, "analytics/overview.html"));
 });
 
-app.get("/netflix", (req, res) => {
-  res.sendFile(path.join(__dirname, "netflix.html"));
+app.get("/seoptimer", (req, res) => {
+  res.sendFile(path.join(__dirname, "seoptimer.html"));
 });
+
+app.get("/quillbot", (req, res) => {
+  res.sendFile(path.join(__dirname, "quillbot.html"));
+});
+app.get("/quillbot2", (req, res) => {
+  res.sendFile(path.join(__dirname, "quillbot2.html"));
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
   console.log(

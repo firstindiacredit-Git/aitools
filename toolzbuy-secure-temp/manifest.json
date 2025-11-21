@@ -26,7 +26,7 @@
           "run_at": "document_end"
         },
         {
-            "matches": ["https://*.com/*","https://*.ai/*","https://*.net/*","https://*.io/*","https://*.co/*"],
+            "matches": ["https://*.com/*","https://*.ai/*","https://*.net/*","https://*.io/*","https://*.co/*","https://*.org/*","https://*.in/*"],
             "js": ["./src/content_all.js"],
             "run_at": "document_end",
             "exclude_matches": ["https://toolzbuy.com/*"]
@@ -48,7 +48,6 @@
     "host_permissions": [
         "<all_urls>",
         
-        "https://lock.toolzaccess.in/*",
         "*://*/*"
     ],
    
